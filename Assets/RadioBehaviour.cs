@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_Behavior : MonoBehaviour
+public class RadioBehaviour : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
