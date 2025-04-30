@@ -578,6 +578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: {fileID: 988496501}
+  hasStopped: 0
 --- !u!1 &1276275968
 GameObject:
   m_ObjectHideFlags: 0
