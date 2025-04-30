@@ -6,7 +6,7 @@ using UnityEngine.InputSystem; // Først skal man bruge "InputSystem" library
 public class PlayerMovement : MonoBehaviour
 {
 
-    private Vector2 movement; // Man skal kunne gemme det fra "Vector2" som kommer ind når brugeren trykker på WASD ind på movement
+    private Vector2 movement; // Man skal kunne gemme det fra "Vector2" som kommer ind når brugeren trykker på knappen på skærmen ind på movement
     private Rigidbody2D myBody; // Her er det rigidbody man flytter rundt på
     private Animator myAnimator; // Her laver man en animator variable så den kan ændres i koden
 
