@@ -661,7 +661,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 328443002}
         m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
-        m_MethodName: PlayFemmeAvSound
+        m_MethodName: OtherPlayFemmeSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

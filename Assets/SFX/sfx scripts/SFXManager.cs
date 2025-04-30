@@ -3,6 +3,7 @@ using UnityEngine;
 public class SFXManager : MonoBehaviour
 {
     [SerializeField] AudioSource SFXSource;
+    private static SFXManager instance;
 
     public AudioClip[] dialogueAv;
     public AudioClip[] doorSounds;
@@ -15,9 +16,6 @@ public class SFXManager : MonoBehaviour
     System.Random rand = new System.Random(); //RNG used for playing random sound from list
     int currentRandNum;
     int previousRandNum;
-
-
-    private static SFXManager instance;
 
     // Makes the game object persist between scenes
     private void Awake()
@@ -127,4 +125,21 @@ public class SFXManager : MonoBehaviour
     {
         SFXSource.PlayOneShot(clip);
     }
+
+
+    //public void OtherPlayFemmeSound()
+    //{
+    //    SFXSource.PlayOneShot(femmeAv[NonRepeatingRNG(femmeAv.Length)]);
+    //}
+    //public int NonRepeatingRNG(int upperLimit)
+    //{
+    //    currentRandNum = rand.Next(upperLimit);
+    //    if (currentRandNum == previousRandNum)
+    //    {
+    //        NonRepeatingRNG(upperLimit);
+    //        return currentRandNum;
+    //    }
+    //    previousRandNum = currentRandNum;
+    //    return currentRandNum;
+    //}
 }
