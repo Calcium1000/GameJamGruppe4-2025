@@ -266,7 +266,6 @@ GameObject:
   - component: {fileID: 328443001}
   - component: {fileID: 328443000}
   - component: {fileID: 328443002}
-  - component: {fileID: 328443003}
   m_Layer: 0
   m_Name: SFXManagerHolder
   m_TagString: Untagged
@@ -399,30 +398,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFXSource: {fileID: 328443000}
-  sampleHits: []
---- !u!164 &328443003
-AudioReverbFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328442998}
-  m_Enabled: 1
-  m_DryLevel: 0
-  m_Room: 0
-  m_RoomHF: 0
-  m_DecayTime: 1
-  m_DecayHFRatio: 0.5
-  m_ReflectionsLevel: -10000
-  m_ReverbLevel: 0
-  m_ReverbDelay: 0.04
-  m_Diffusion: 100
-  m_Density: 100
-  m_HFReference: 5000
-  m_RoomLF: 0
-  m_LFReference: 250
-  m_ReflectionsDelay: 0
-  m_ReverbPreset: 27
+  dialogueAv: []
+  doorSounds: []
+  femmeAv: []
+  hitSounds: []
+  mascAv: []
+  swingSounds: []
+  toiletDoorSounds: []
 --- !u!1 &343529500
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,7 +661,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 328443002}
         m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
-        m_MethodName: PlayRandomSFX
+        m_MethodName: PlayFemmeAvSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
