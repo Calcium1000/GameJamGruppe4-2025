@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 // Først skal man bruge "InputSystem" library
 
 public class PlayerMovement : MonoBehaviour
@@ -11,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movement; // Man skal kunne gemme det fra "Vector2" som kommer ind når brugeren trykker på knappen på skærmen ind på movement
     private Rigidbody2D myBody; // Her er det rigidbody man flytter rundt på
     private Animator myAnimator; // Her laver man en animator variable så den kan ændres i koden
-
+    public Transform shakeyTransform;
     public TMP_Text label;
 
     private void OnTilt(InputValue value)
@@ -29,11 +31,30 @@ public class PlayerMovement : MonoBehaviour
     {
         myBody = GetComponent<Rigidbody2D>(); // Her sætter man myBody rigidbody til rigidbody på det gameobject man er på
 
-        InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+        InputSystem.EnableDevice(UnityEngine.InputSystem.Accelerometer.current);
         InputSystem.EnableDevice(UnityEngine.InputSystem.GravitySensor.current);
+        InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+
+
+
+
+
 
     }
+    private void Update()
+    {
+        Vector3 rotation = UnityEngine.InputSystem.Gyroscope.current.angularVelocity.value;
+        Vector3 rotationFixed = new Vector3(-rotation.x, -rotation.y,rotation.z);
+        rotation = rotationFixed;
+        label.text = "val : " + rotation.ToString();
+        shakeyTransform.rotation.ToAngleAxis(out float angle, out Vector3 axis);
+        Vector3 currRotation = axis * angle;
+        if ((currRotation + rotation).magnitude < 30) {
+            shakeyTransform.Rotate(rotation);
+        }
 
+        
+    }
     // Update is called once per frame
     private void OnMovement(InputValue value) // Her laver man en funktion som holder øje med Input systems value, altså dens værdi
     {
