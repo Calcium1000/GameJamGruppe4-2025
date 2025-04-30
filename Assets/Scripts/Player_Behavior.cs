@@ -50,7 +50,7 @@ public class Player_Behavior : MonoBehaviour
 
     void drawRay(Ray ray)
     {
-        //ONLY VIBISBLE IN GIZMOS VIEW
+        //ONLY VISIBLE IN GIZMOS VIEW
         Debug.DrawRay(ray.origin, ray.direction, Color.red, 1f);
     }
 }
