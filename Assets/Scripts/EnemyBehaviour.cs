@@ -26,7 +26,6 @@ public class EnemyBehaviour : MonoBehaviour
         //when they stop
         if (agent.velocity.magnitude == 0 & !hasStopped)
         {
-            agent.gameObject.transform.Rotate(0, 35, 0);
             hasStopped = true;
         }
         //when they start moving again
@@ -34,7 +33,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             hasStopped = false;
         }
-        //if they rotate but are still stopped
+        //rotate while stopped
         if (hasStopped) {
             agent.gameObject.transform.Rotate(0, 35, 0);
         }
