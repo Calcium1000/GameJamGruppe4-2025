@@ -3,7 +3,22 @@ guid: 40763d2dda8326a439bb4122a81be045
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Faucet
+    second: {fileID: 2100000, guid: 5dac241929aa0ed4e94dab40fd409de2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sink
+    second: {fileID: 2100000, guid: bb14fa68fb65d5f449aec32af2fa3216, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Table
+    second: {fileID: 2100000, guid: 6472d9b49e67f614794a8cb1d504bf2c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
