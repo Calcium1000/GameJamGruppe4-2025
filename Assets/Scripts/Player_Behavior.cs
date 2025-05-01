@@ -14,8 +14,8 @@ public class Player_Behavior : MonoBehaviour
     private InputSystem_Actions inputSystem;
     private Vector2 movementDirection;
     private float movementSpeed = 10f;
-    
-    
+    public Transform shakeyTransform;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -66,8 +66,21 @@ public class Player_Behavior : MonoBehaviour
         Vector3 eulerAngles = Camera.main.transform.eulerAngles;
         eulerAngles.z = 0;
         Camera.main.transform.eulerAngles = eulerAngles;
-    }
 
+        ShakeyCam();
+    }
+    void ShakeyCam()
+    {
+        Vector3 rotation = UnityEngine.InputSystem.Gyroscope.current.angularVelocity.value;
+        Vector3 rotationFixed = new Vector3(-rotation.x, -rotation.y, rotation.z);
+        rotation = rotationFixed;
+        shakeyTransform.rotation.ToAngleAxis(out float angle, out Vector3 axis);
+        Vector3 currRotation = axis * angle;
+        if ((currRotation + rotation).magnitude < 30)
+        {
+            shakeyTransform.Rotate(rotation);
+        }
+    }
     void drawRay(Ray ray)
     {
         //ONLY VISIBLE IN GIZMOS VIEW

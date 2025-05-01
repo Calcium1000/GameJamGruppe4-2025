@@ -7535,6 +7535,10 @@ PrefabInstance:
       propertyPath: 'm_Cameras.Array.data[0]'
       value: 
       objectReference: {fileID: 299088227}
+    - target: {fileID: 2223749496784948155, guid: c15d44431659cb84b88b83ae58ef0be4, type: 3}
+      propertyPath: shakeyTransform
+      value: 
+      objectReference: {fileID: 2693462270723258578}
     - target: {fileID: 3168068489524909312, guid: c15d44431659cb84b88b83ae58ef0be4, type: 3}
       propertyPath: m_UseGravity
       value: 0
@@ -7548,6 +7552,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c15d44431659cb84b88b83ae58ef0be4, type: 3}
+--- !u!4 &2693462270723258578 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7196895658992931589, guid: c15d44431659cb84b88b83ae58ef0be4, type: 3}
+  m_PrefabInstance: {fileID: 2693462270723258577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4356908460100538090
 PrefabInstance:
   m_ObjectHideFlags: 0
