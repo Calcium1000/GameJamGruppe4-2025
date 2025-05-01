@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6422058588942767402}
   - component: {fileID: -6697459166974233275}
   - component: {fileID: -2377480589157770062}
-  - component: {fileID: 5487994257622612275}
+  - component: {fileID: 7861842009411780251}
   m_Layer: 0
   m_Name: cubicle
   m_TagString: Furniture
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unbrokenObjects: []
-  sceneObjects: []
+  brokenObjects: []
   brokenVersion: {fileID: 1898194801335908432, guid: df7318194f4c76443bc8503fadd4c04d, type: 3}
 --- !u!54 &-2377480589157770062
 Rigidbody:
@@ -131,10 +131,10 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &5487994257622612275
-BoxCollider:
+--- !u!64 &7861842009411780251
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -151,6 +151,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.02, y: 0.02, z: 0.02583867}
-  m_Center: {x: 0, y: -1.7739782e-18, z: -0.00024966523}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3552259011104966814, guid: 15e24f0da56a8ec43a2a0252c978547e, type: 3}

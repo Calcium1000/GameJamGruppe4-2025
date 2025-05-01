@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     private bool _floorDestroyable = false;
     private bool _propsDestroyable = false;
     
+    [SerializeField] private levelState _levelState;
+    
 
     public bool FurnitureDestroyable
     {
@@ -83,9 +85,13 @@ public class GameManager : MonoBehaviour
     {
         
     }
-
+    
     private void Awake()
     {
+        _levelState = new levelState();
+        _levelState.state = 0;
+        _levelState.levelFinished = false;
+        _levelState.destructableGameObjects = GameObject.FindGameObjectsWithTag("Mob");
         if (instance == null) // Makes the class a singleton
         {
             instance = this;
@@ -104,6 +110,14 @@ public class GameManager : MonoBehaviour
             {
                 rb.constraints = RigidbodyConstraints.FreezeAll;
             }
+            
         }
+    }
+
+    private struct levelState
+    {
+        public int state;
+        public GameObject[] destructableGameObjects;
+        public bool levelFinished;
     }
 }
