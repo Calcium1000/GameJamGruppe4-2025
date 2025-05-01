@@ -17,7 +17,7 @@ public class Player_Behavior : MonoBehaviour
     private float movementSpeed = 10f;
     public SFXManager sfxManager;
     public GameManager gameManager;
-
+    public float lookSpeed = 1000;
     private bool isWalking = false;
 
     HashSet<GameObject> destroyedGameObjects;
@@ -110,7 +110,7 @@ public class Player_Behavior : MonoBehaviour
         playerRigidBody.linearVelocity = movement;
 
         Vector2 lookDirection = GetComponent<PlayerInput>().actions.FindAction("Look").ReadValue<Vector2>();
-        lookDirection *= 2;
+        lookDirection *= lookSpeed * Time.deltaTime;
         Camera.main.transform.Rotate(new Vector3(-lookDirection.y, lookDirection.x, 0));
         // Lock the Z-axis to 0
         Vector3 eulerAngles = Camera.main.transform.eulerAngles;

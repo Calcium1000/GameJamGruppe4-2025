@@ -7445,6 +7445,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 634967738}
     - target: {fileID: 2223749496784948155, guid: c15d44431659cb84b88b83ae58ef0be4, type: 3}
+      propertyPath: lookSpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223749496784948155, guid: c15d44431659cb84b88b83ae58ef0be4, type: 3}
       propertyPath: sfxManager
       value: 
       objectReference: {fileID: 123031964}
