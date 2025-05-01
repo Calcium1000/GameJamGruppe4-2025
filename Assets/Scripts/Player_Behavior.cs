@@ -12,17 +12,18 @@ public class Player_Behavior : MonoBehaviour
     private Vector2 moveInput;
     private float movementSpeed = 10f;
     private SFXManager sfxManager;
+
+    private bool isWalking;
     
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         playerCamera = GetComponentInChildren<Camera>();
         Debug.Log(playerCamera.name);
         inputSystem = new InputSystem_Actions();
         animator = GetComponent<Animator>();
-        sfxManager = new SFXManager();
+        sfxManager = FindAnyObjectByType<SFXManager>();
     }
     private void OnEnable()
     {
@@ -41,6 +42,7 @@ public class Player_Behavior : MonoBehaviour
 
     void OnAttack(InputValue value)
     {
+        animator.Play("Attack Swing");
         sfxManager.PlaySwingSound();
     }
     // Update is called once per frame
@@ -48,9 +50,15 @@ public class Player_Behavior : MonoBehaviour
     {
         if (moveInput.x != 0 || moveInput.y != 0)
         {
+            isWalking = true;
             transform.position += new Vector3(moveInput.y, 0, moveInput.x) * (movementSpeed * Time.deltaTime);
-
         }
+        else
+        {
+            isWalking = false;
+        }
+        sfxManager.PlayWalkingSound(isWalking);
+
     }
 
     void drawRay(Ray ray)
