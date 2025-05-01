@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 7239503134940839734}
   - component: {fileID: -3530451398483492444}
   - component: {fileID: 6391327954748651046}
-  - component: {fileID: 7390295987448955385}
+  - component: {fileID: 9129079757354378707}
   m_Layer: 0
   m_Name: Toilet
-  m_TagString: Untagged
+  m_TagString: Props
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f496abd115b0c7c4bbd7418318dbccc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unbrokenObject: []
+  unbrokenObjects: []
+  sceneObjects: []
   brokenVersion: {fileID: 6954195965977601795, guid: 5b7c3ed3ed882d9499f07d7c7a01eda9, type: 3}
 --- !u!54 &6391327954748651046
 Rigidbody:
@@ -130,8 +131,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &7390295987448955385
-MeshCollider:
+--- !u!65 &9129079757354378707
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,7 +149,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4711208715938537054, guid: 643510ae3eedbce4ba242de8f8598905, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.022797685, y: 0.016234461, z: 0.034689564}
+  m_Center: {x: -0.0013988516, y: 0.0000000027939673, z: 0.005279763}

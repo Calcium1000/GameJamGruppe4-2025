@@ -4,12 +4,11 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Props
   - Mob
   - Walls
   - Floor
   - Furniture
-  - Femme mob
-  - Masc mob
   layers:
   - Default
   - TransparentFX

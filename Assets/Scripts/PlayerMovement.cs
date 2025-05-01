@@ -63,10 +63,10 @@ public class PlayerMovement : MonoBehaviour
         if (movement.x != 0 || movement.y != 0) { // Her bliver value.vector2 sat til [0,0] når WASD ikke bliver trykket på
 
         }
-    else 
-    {
+        else 
+        {
 
-    }
+        }
 }
 
     [System.Obsolete]

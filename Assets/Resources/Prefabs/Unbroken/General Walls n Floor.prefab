@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1359748534486088625}
   - component: {fileID: 8088977009840793527}
   - component: {fileID: -7544694329431574276}
+  - component: {fileID: 287659237851854772}
   m_Layer: 0
-  m_Name: Floor
-  m_TagString: Untagged
+  m_Name: General Walls n Floor
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,3 +120,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &287659237851854772
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239989525982859998}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.018030059, y: 0.017552707, z: 0.00036849}
+  m_Center: {x: -0.000082568775, y: 0.00013778107, z: -0.00095051806}

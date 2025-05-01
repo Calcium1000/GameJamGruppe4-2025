@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 4707623428258476049}
   - component: {fileID: 3969578825634366334}
   - component: {fileID: 690885794491152439}
-  - component: {fileID: 7399600617235975482}
+  - component: {fileID: 6594340110576749970}
   m_Layer: 0
   m_Name: Water Spill
-  m_TagString: Untagged
+  m_TagString: Props
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f496abd115b0c7c4bbd7418318dbccc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unbrokenObject: []
+  unbrokenObjects: []
+  sceneObjects: []
   brokenVersion: {fileID: 3902143900892031290, guid: 659db563925a0fe4ca17478760fec121, type: 3}
 --- !u!54 &690885794491152439
 Rigidbody:
@@ -130,8 +131,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &7399600617235975482
-MeshCollider:
+--- !u!65 &6594340110576749970
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,7 +149,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2124705421725058983, guid: ae136ecaca6fd1e489849dd8bd02a2e1, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.023870487, y: 0.02117972, z: 0.00020782137}
+  m_Center: {x: 0.00068995124, y: 0.00058986107, z: 0.00010391043}

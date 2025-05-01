@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9166966781980654888}
   m_Layer: 0
   m_Name: Receptionist Desk
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f496abd115b0c7c4bbd7418318dbccc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unbrokenObject: []
+  unbrokenObjects: []
+  sceneObjects: []
   brokenVersion: {fileID: 7879055768523810106, guid: 830216ef7852c664ea25f8a8bcb7ee3e, type: 3}
 --- !u!54 &5911113985041403470
 Rigidbody:
@@ -150,6 +151,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6562160253124720560, guid: 7ee7b9fe5b1a8f642855735cf21b1712, type: 3}

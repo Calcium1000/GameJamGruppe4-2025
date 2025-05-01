@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 499096323711491871}
   - component: {fileID: -2220231216433113075}
   - component: {fileID: -5929943260124824754}
+  - component: {fileID: 428521555099204627}
   m_Layer: 0
   m_Name: bowl
   m_TagString: Untagged
@@ -47,7 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f496abd115b0c7c4bbd7418318dbccc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unbrokenObject: []
+  unbrokenObjects: []
+  sceneObjects: []
   brokenVersion: {fileID: 6670639391852073237, guid: a0d1d2bcf9a82cf45ab83ecfaf3293f5, type: 3}
 --- !u!54 &-5929943260124824754
 Rigidbody:
@@ -76,6 +78,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &428521555099204627
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2978171168806475699}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.2040691, y: 0.671155, z: 2.2850914}
+  m_Center: {x: -0.009606361, y: 0.33624125, z: -0.016440392}
 --- !u!1 &5073466811578428638
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6722227947102568162}
   - component: {fileID: -4559694909497856681}
   - component: {fileID: 8139085934376335533}
+  - component: {fileID: 8737868403683474396}
   m_Layer: 0
   m_Name: Fridge
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f496abd115b0c7c4bbd7418318dbccc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unbrokenObject: []
+  unbrokenObjects: []
+  sceneObjects: []
   brokenVersion: {fileID: 2333367763295787854, guid: b796924cbdb1f4344b0e8a3c79029f4b, type: 3}
 --- !u!54 &8139085934376335533
 Rigidbody:
@@ -131,3 +133,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &8737868403683474396
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889067087292801713}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020000001, y: 0.020000001, z: 0.02}
+  m_Center: {x: 0, y: 0, z: 0}

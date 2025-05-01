@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3772387746793142609}
   - component: {fileID: 8989185722692803375}
   - component: {fileID: -614352309569542866}
+  - component: {fileID: 2500659835403638392}
   m_Layer: 0
   m_Name: Broom Closet
-  m_TagString: Untagged
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,3 +115,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &2500659835403638392
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8571703974660731264}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0024206676, y: 0.0030492453, z: 0.0023427226}
+  m_Center: {x: 0.011210333, y: -0.004869967, z: 0.0010794374}

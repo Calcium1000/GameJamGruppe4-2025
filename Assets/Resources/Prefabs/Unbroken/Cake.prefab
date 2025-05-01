@@ -272,9 +272,10 @@ GameObject:
   - component: {fileID: 6108455663501723988}
   - component: {fileID: -3688844227722038403}
   - component: {fileID: -7193755910028382938}
+  - component: {fileID: 7918521653951616868}
   m_Layer: 0
   m_Name: Cake
-  m_TagString: Untagged
+  m_TagString: Props
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -314,7 +315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f496abd115b0c7c4bbd7418318dbccc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unbrokenObject: []
+  unbrokenObjects: []
+  sceneObjects: []
   brokenVersion: {fileID: 7931057509345576373, guid: edba38151712877458b12ab7fd28df2f, type: 3}
 --- !u!54 &-7193755910028382938
 Rigidbody:
@@ -343,6 +345,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7918521653951616868
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191174841285605337}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.97, y: 1, z: 2.02}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4302358054690054219
 GameObject:
   m_ObjectHideFlags: 0

@@ -7149,7 +7149,7 @@ GameObject:
   - component: {fileID: 6428500496418113954}
   - component: {fileID: 4185716872044134863}
   m_Layer: 0
-  m_Name: Broom Closet Walls
+  m_Name: Broom Closet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
