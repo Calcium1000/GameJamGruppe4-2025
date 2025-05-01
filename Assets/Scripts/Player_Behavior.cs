@@ -18,7 +18,7 @@ public class Player_Behavior : MonoBehaviour
     private SFXManager sfxManager;
     private GameManager gameManager;
 
-    private bool isWalking;
+    private bool isWalking = false;
 
     HashSet<GameObject> destroyedGameObjects;
     
