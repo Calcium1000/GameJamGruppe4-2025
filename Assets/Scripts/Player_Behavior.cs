@@ -10,7 +10,9 @@ public class Player_Behavior : MonoBehaviour
     private PlayerInput playerInput;
     private Animator animator;
     private Camera playerCamera;
+    private Rigidbody playerRigidBody;
     private InputSystem_Actions inputSystem;
+    private Vector2 movementDirection;
     private float movementSpeed = 10f;
     
     
@@ -22,14 +24,13 @@ public class Player_Behavior : MonoBehaviour
         Debug.Log(playerCamera.name);
         inputSystem = new InputSystem_Actions();
         inputSystem.Enable();
+        playerRigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-
-
     }
 
     void OnMove(InputValue value)
     {
-
+        movementDirection = value.Get<Vector2>();
     }
 
     void OnAttack(InputValue value)
@@ -46,6 +47,8 @@ public class Player_Behavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 movement = new Vector3(-movementDirection.y, 0, movementDirection.x) * (movementSpeed);
+        playerRigidBody.linearVelocity = movement;
     }
 
     void drawRay(Ray ray)
