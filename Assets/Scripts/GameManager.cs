@@ -7,7 +7,7 @@ using UnityEngine.WSA;
 using Application = UnityEngine.Application;
 using Object = System.Object;
 
-public class BreakableObject : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [SerializeField] private UnityEngine.Object[] unbrokenObject;
     

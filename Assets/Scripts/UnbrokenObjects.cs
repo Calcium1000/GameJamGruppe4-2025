@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UnbrokenObjects : BreakableObject
+public class UnbrokenObjects : GameManager
 {
     [SerializeField] private GameObject brokenVersion;
 
