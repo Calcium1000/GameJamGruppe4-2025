@@ -15,7 +15,7 @@ public class Player_Behavior : MonoBehaviour
     private Rigidbody playerRigidBody;
     private Vector2 movementDirection;
     private float movementSpeed = 10f;
-    private SFXManager sfxManager;
+    public SFXManager sfxManager;
     public GameManager gameManager;
 
     private bool isWalking = false;
@@ -110,7 +110,7 @@ public class Player_Behavior : MonoBehaviour
         playerRigidBody.linearVelocity = movement;
 
         Vector2 lookDirection = GetComponent<PlayerInput>().actions.FindAction("Look").ReadValue<Vector2>();
-
+        lookDirection *= 2;
         Camera.main.transform.Rotate(new Vector3(-lookDirection.y, lookDirection.x, 0));
         // Lock the Z-axis to 0
         Vector3 eulerAngles = Camera.main.transform.eulerAngles;
