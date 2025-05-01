@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class RadioBehaviour : MonoBehaviour
 {
-    [SerializeField] AudioSource musicPlayer;
+    public AudioSource musicPlayer;
     private AudioClip technoTrack;
     private AudioClip classical;
 
-    bool hitOnce = false;
+    public static bool hitOnce = false;
+    private bool classicalPlaying = false;
     void Start()
     {
         musicPlayer = GetComponent<AudioSource>();
@@ -21,13 +22,12 @@ public class RadioBehaviour : MonoBehaviour
         musicPlayer.clip = classical;
         musicPlayer.PlayDelayed(0.3f);
     }
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        ChangeToClassical();
-        if (!hitOnce)
+        if (hitOnce && !classicalPlaying)
         {
-            Destroy(gameObject);
+            ChangeToClassical();
+            classicalPlaying = true;
         }
-        hitOnce = true;
     }
 }
