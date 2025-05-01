@@ -3,8 +3,6 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
-using Random = UnityEngine.Random;
 
 public class Player_Behavior : MonoBehaviour
 {
@@ -16,15 +14,10 @@ public class Player_Behavior : MonoBehaviour
     private InputSystem_Actions inputSystem;
     private Vector2 movementDirection;
     private float movementSpeed = 10f;
-    private SFXManager sfxManager;
-    private GameManager gameManager;
-
-    private bool isWalking = false;
-
-    HashSet<GameObject> destroyedGameObjects;
     
     
-    void Awake()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         playerCamera = GetComponentInChildren<Camera>();
@@ -33,9 +26,6 @@ public class Player_Behavior : MonoBehaviour
         inputSystem.Enable();
         playerRigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        sfxManager = FindAnyObjectByType<SFXManager>();
-        gameManager = FindAnyObjectByType<GameManager>();
-        destroyedGameObjects = new HashSet<GameObject>();
     }
 
     void OnMove(InputValue value)
@@ -43,89 +33,20 @@ public class Player_Behavior : MonoBehaviour
         movementDirection = value.Get<Vector2>();
     }
 
-    void CheckRayCollision(Ray ray)
-    {
-        RaycastHit hit;
-        float maximumDistanceOfRay = 5;
-        void DestroyAndAddToDestroyedList()
-        {
-            destroyedGameObjects.Add(hit.collider.gameObject);
-            Destroy(hit.collider.gameObject);
-            sfxManager.PlayHitSound();
-        }
-        if (Physics.Raycast(ray, out hit, maximumDistanceOfRay))
-        {
-            
-            Debug.Log(hit.collider.name);
-            if (hit.collider.CompareTag("Mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
-            {
-                Debug.Log("Mob Hit");
-                BreakObject(hit);
-                DestroyAndAddToDestroyedList();
-                sfxManager.PlayFemmeAvSound();
-            }
-            else if ((hit.collider.CompareTag("Furniture") || hit.collider.CompareTag("Props")) && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FurnitureDestroyable)
-            {
-                Debug.Log("Furniture Hit");
-                DestroyAndAddToDestroyedList();
-            }
-            else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.WallsDestroyable)
-            {
-                Debug.Log("Walls Hit");
-                DestroyAndAddToDestroyedList();
-            }
-            else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
-            {
-                Debug.Log("Floor Hit");
-                DestroyAndAddToDestroyedList();
-            }
-
-            if (hit.collider == null)
-            {
-                Debug.Log(hit.collider.name);
-            }
-        }
-    }
-
-    private static void BreakObject(RaycastHit hit)
-    {
-        UnbrokenObjects UO = hit.collider.gameObject.GetComponent<UnbrokenObjects>();
-        if (UO != null)
-        {
-            UO.isAttacked();
-        }
-    }
-
     void OnAttack(InputValue value)
     {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Swing"))
+        //shoot 10 rats in cone
+        int numRays = 10;
+        float deg = 10f;
+        for (int i = 0; i < numRays; i++)
         {
-            animator.Play("Attack Swing");
-            sfxManager.PlaySwingSound();
-            //shoot 10 rats in cone
-            int numRays = 10;
-            float deg = 10f;
-            for (int i = 0; i < numRays; i++)
-            {
-                Ray shot = new Ray(playerCamera.transform.position, Quaternion.Euler(0, (i - (numRays / 2)) * deg, 0) * playerCamera.transform.rotation * new Vector3(0, 0, 1));
-                drawRay(shot);
-                //CheckRayCollision(shot);
-            }
+            Ray shot = new Ray(playerCamera.transform.position, Quaternion.Euler(0, (i - (numRays / 2)) * deg, 0) * playerCamera.transform.rotation * new Vector3(0, 0, 1));
+            drawRay(shot);
         }
     }
-
+    // Update is called once per frame
     void Update()
     {
-        if (movementDirection.x != 0 || movementDirection.y != 0)
-        {
-            isWalking = true;
-        }
-        else
-        {
-            isWalking = false;
-        }
-        sfxManager.PlayWalkingSound(isWalking);
-
         Vector3 movement = new Vector3(-movementDirection.y, 0, movementDirection.x) * (movementSpeed);
         playerRigidBody.linearVelocity = movement;
     }
