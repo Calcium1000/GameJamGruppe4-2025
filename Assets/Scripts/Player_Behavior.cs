@@ -22,8 +22,6 @@ public class Player_Behavior : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerCamera = GetComponentInChildren<Camera>();
         Debug.Log(playerCamera.name);
-        inputSystem = new InputSystem_Actions();
-        inputSystem.Enable();
         playerRigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
@@ -32,6 +30,8 @@ public class Player_Behavior : MonoBehaviour
     {
         movementDirection = value.Get<Vector2>();
     }
+
+   
 
     void OnAttack(InputValue value)
     {
@@ -47,8 +47,17 @@ public class Player_Behavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 movement = new Vector3(-movementDirection.y, 0, movementDirection.x) * (movementSpeed);
+        Vector3 movement = transform.forward * movementDirection.y+ transform.right * movementDirection.x;
+        movement *= movementSpeed;
         playerRigidBody.linearVelocity = movement;
+
+        Vector2 lookDirection = GetComponent<PlayerInput>().actions.FindAction("Look").ReadValue<Vector2>();
+
+        transform.Rotate(new Vector3(-lookDirection.y, lookDirection.x, 0));
+        // Lock the Z-axis to 0
+        Vector3 eulerAngles = transform.eulerAngles;
+        eulerAngles.z = 0;
+        transform.eulerAngles = eulerAngles;
     }
 
     void drawRay(Ray ray)
