@@ -47,11 +47,11 @@ public class Player_Behavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 forward = transform.forward;
+        Vector3 forward = Camera.main.transform.forward;
         forward.y = 0; // Flatten the forward vector
         forward.Normalize(); // Normalize to maintain direction
 
-        Vector3 right = transform.right;
+        Vector3 right = Camera.main.transform.right;
         right.y = 0; // Flatten the right vector
         right.Normalize(); // Normalize to maintain direction
 
@@ -61,11 +61,11 @@ public class Player_Behavior : MonoBehaviour
 
         Vector2 lookDirection = GetComponent<PlayerInput>().actions.FindAction("Look").ReadValue<Vector2>();
 
-        transform.Rotate(new Vector3(-lookDirection.y, lookDirection.x, 0));
+        Camera.main.transform.Rotate(new Vector3(-lookDirection.y, lookDirection.x, 0));
         // Lock the Z-axis to 0
-        Vector3 eulerAngles = transform.eulerAngles;
+        Vector3 eulerAngles = Camera.main.transform.eulerAngles;
         eulerAngles.z = 0;
-        transform.eulerAngles = eulerAngles;
+        Camera.main.transform.eulerAngles = eulerAngles;
     }
 
     void drawRay(Ray ray)
