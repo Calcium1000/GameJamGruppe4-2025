@@ -18,6 +18,7 @@ public class Player_Behavior : MonoBehaviour
     private float movementSpeed = 10f;
     private SFXManager sfxManager;
     private GameManager gameManager;
+    public GameObject[] mobs;
 
     private bool isWalking = false;
 
@@ -36,6 +37,7 @@ public class Player_Behavior : MonoBehaviour
         sfxManager = FindAnyObjectByType<SFXManager>();
         gameManager = FindAnyObjectByType<GameManager>();
         destroyedGameObjects = new HashSet<GameObject>();
+        mobs = GameObject.FindGameObjectsWithTag("Mob");
     }
 
     void OnMove(InputValue value)
@@ -53,7 +55,13 @@ public class Player_Behavior : MonoBehaviour
             if (hit.collider.CompareTag("Mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
             {
                 hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
+                mobs = GameObject.FindGameObjectsWithTag("Mob");
                 sfxManager.PlayFemmeAvSound();
+                foreach(var OB in GameObject.FindGameObjectsWithTag("Mob"))
+                {
+                    Debug.Log(OB.name);
+                }
+                Debug.Log(GameObject.FindGameObjectsWithTag("Mob").Length);
             }
             else if (hit.collider.CompareTag("Furniture") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
             {
