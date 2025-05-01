@@ -11,6 +11,7 @@ public class Player_Behavior : MonoBehaviour
     private InputSystem_Actions inputSystem;
     private Vector2 moveInput;
     private float movementSpeed = 10f;
+    private SFXManager sfxManager;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,9 +21,16 @@ public class Player_Behavior : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>();
         Debug.Log(playerCamera.name);
         inputSystem = new InputSystem_Actions();
-        inputSystem.Enable();
         animator = GetComponent<Animator>();
-        
+        sfxManager = new SFXManager();
+    }
+    private void OnEnable()
+    {
+        inputSystem.Enable();
+    }
+    private void OnDisable()
+    {
+        inputSystem.Disable();
     }
 
     void OnMove(InputValue value)
@@ -33,7 +41,7 @@ public class Player_Behavior : MonoBehaviour
 
     void OnAttack(InputValue value)
     {
-        
+        sfxManager.PlaySwingSound();
     }
     // Update is called once per frame
     void Update()
@@ -41,6 +49,7 @@ public class Player_Behavior : MonoBehaviour
         if (moveInput.x != 0 || moveInput.y != 0)
         {
             transform.position += new Vector3(moveInput.y, 0, moveInput.x) * (movementSpeed * Time.deltaTime);
+
         }
     }
 
