@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unbrokenObjects: []
-  sceneObjects: []
+  brokenObjects: []
   brokenVersion: {fileID: 7322703394727654753, guid: f956ce7abe23af948a25aa105060cc72, type: 3}
 --- !u!54 &-9191531365185711255
 Rigidbody:
@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 4850109982011553576}
   - component: {fileID: 3315014820866399498}
   - component: {fileID: 5619114850178646799}
-  - component: {fileID: 8180174386557811283}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -185,25 +184,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8180174386557811283
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6220588848657344712}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: 33c4f42ee9c6c2043b15105cf9f43954, type: 3}

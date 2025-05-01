@@ -1,9 +1,12 @@
+using System.IO;
+using Mono.Cecil;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
+    [SerializeField] Object[] unbrokenObjects, brokenObjects;
 
     private bool _furnitureDestroyable = false;
     private bool _wallsDestroyable = false;
@@ -67,5 +70,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        unbrokenObjects = Resources.LoadAll(Path.Combine("Prefabs", "Unbroken"), typeof(GameObject));
     }
 }

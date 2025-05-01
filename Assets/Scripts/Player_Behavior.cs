@@ -107,7 +107,7 @@ public class Player_Behavior : MonoBehaviour
         {
             isWalking = false;
         }
-        sfxManager.PlayWalkingSound(isWalking);
+        //sfxManager.PlayWalkingSound(isWalking);
 
         Vector3 movement = new Vector3(-movementDirection.y, 0, movementDirection.x) * (movementSpeed);
         playerRigidBody.linearVelocity = movement;
