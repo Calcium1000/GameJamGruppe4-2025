@@ -13,7 +13,6 @@ public class Player_Behavior : MonoBehaviour
     private Animator animator;
     private Camera playerCamera;
     private Rigidbody playerRigidBody;
-    private InputSystem_Actions inputSystem;
     private Vector2 movementDirection;
     private float movementSpeed = 10f;
     private SFXManager sfxManager;
@@ -25,17 +24,21 @@ public class Player_Behavior : MonoBehaviour
     
     
     void Awake()
+    public Transform shakeyTransform;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
         playerCamera = GetComponentInChildren<Camera>();
         Debug.Log(playerCamera.name);
-        inputSystem = new InputSystem_Actions();
-        inputSystem.Enable();
         playerRigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        sfxManager = FindAnyObjectByType<SFXManager>();
-        gameManager = FindAnyObjectByType<GameManager>();
-        destroyedGameObjects = new HashSet<GameObject>();
+        try {
+            InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+        } catch
+        {
+            Debug.Log("Gyroscope not available");
+        }
     }
 
     void OnMove(InputValue value)
@@ -95,20 +98,46 @@ public class Player_Behavior : MonoBehaviour
 
     void Update()
     {
-        if (movementDirection.x != 0 || movementDirection.y != 0)
-        {
-            isWalking = true;
-        }
-        else
-        {
-            isWalking = false;
-        }
-        //sfxManager.PlayWalkingSound(isWalking);
+        Vector3 forward = Camera.main.transform.forward;
+        forward.y = 0; // Flatten the forward vector
+        forward.Normalize(); // Normalize to maintain direction
 
-        Vector3 movement = new Vector3(-movementDirection.y, 0, movementDirection.x) * (movementSpeed);
+        Vector3 right = Camera.main.transform.right;
+        right.y = 0; // Flatten the right vector
+        right.Normalize(); // Normalize to maintain direction
+
+        Vector3 movement = forward * movementDirection.y + right * movementDirection.x;
+        movement *= movementSpeed;
         playerRigidBody.linearVelocity = movement;
-    }
 
+        Vector2 lookDirection = GetComponent<PlayerInput>().actions.FindAction("Look").ReadValue<Vector2>();
+
+        Camera.main.transform.Rotate(new Vector3(-lookDirection.y, lookDirection.x, 0));
+        // Lock the Z-axis to 0
+        Vector3 eulerAngles = Camera.main.transform.eulerAngles;
+        eulerAngles.z = 0;
+        Camera.main.transform.eulerAngles = eulerAngles;
+        try
+        {
+            ShakeyCam();
+
+        } catch
+        {
+            Debug.Log("Gyroscope not available");
+        }
+    }
+    void ShakeyCam()
+    {
+        Vector3 rotation = UnityEngine.InputSystem.Gyroscope.current.angularVelocity.value;
+        Vector3 rotationFixed = new Vector3(-rotation.x, -rotation.y, rotation.z);
+        rotation = rotationFixed;
+        shakeyTransform.rotation.ToAngleAxis(out float angle, out Vector3 axis);
+        Vector3 currRotation = axis * angle;
+        if ((currRotation + rotation).magnitude < 30)
+        {
+            shakeyTransform.Rotate(rotation);
+        }
+    }
     void drawRay(Ray ray)
     {
         //ONLY VISIBLE IN GIZMOS VIEW
