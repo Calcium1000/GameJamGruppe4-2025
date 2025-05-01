@@ -1,56 +1,71 @@
-using System.IO;
-using System.Linq;
-using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.WSA;
-using Application = UnityEngine.Application;
-using Object = System.Object;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private UnityEngine.Object[] unbrokenObject;
-    
-    private string unbrokenObjectFolder;
-    private GameObject go;
-    private Scene currentScene;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private static GameManager instance;
+
+    private bool _furnitureDestroyable = false;
+    private bool _wallsDestroyable = false;
+    private bool _floorDestroyable = false;
+
+    public bool FurnitureDestroyable
     {
-        unbrokenObjectFolder = Path.Combine("Prefabs", "Unbroken");
-        unbrokenObject = Resources.LoadAll(unbrokenObjectFolder, typeof(GameObject));
-        
-        //Instantiate(go, Vector3.zero, Quaternion.identity);
-        
-        foreach (var obj in unbrokenObject)
+        get
         {
-            if (obj.GameObject().TryGetComponent<Rigidbody>(out Rigidbody rb) == false)
+            if (GameObject.FindGameObjectsWithTag("Femme mob").Length == 0 && GameObject.FindGameObjectsWithTag("masc mob").Length == 0)
             {
-                obj.GameObject().AddComponent<Rigidbody>();
+                _furnitureDestroyable = true;
             }
-            Rigidbody rigidBody = obj.GetComponent<Rigidbody>();
-            rigidBody.useGravity = false;
+            return _furnitureDestroyable;
         }
-        currentScene = SceneManager.GetActiveScene();
-        GameObject[] gameObjects = currentScene.GetRootGameObjects();
-        foreach (var go in gameObjects)
+        set
         {
-            Rigidbody rigidBody = go.GetComponent<Rigidbody>();
-            rigidBody.useGravity = false;
+            _furnitureDestroyable = value;
         }
-        
+    }
+    public bool WallsDestroyable
+    {
+        get
+        {
+            if (GameObject.FindGameObjectsWithTag("Furniture").Length == 0)
+            {
+                _wallsDestroyable = true;
+            }
+            return _wallsDestroyable;
+        }
+        set
+        {
+            _wallsDestroyable = value;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool FloorDestroyable
     {
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     go = unbrokenObject[Random.Range(0, unbrokenObject.Length-1)].GameObject();
-        //     Instantiate(go, Vector3.zero, Quaternion.identity);
-        //     go.GetComponent<UnbrokenObjects>().isAttacked();
-        // }
+        get
+        {
+            if (GameObject.FindGameObjectsWithTag("Walls").Length == 0)
+            {
+                _floorDestroyable = true;
+            }
+            return _floorDestroyable;
+        }
+        set
+        {
+            _floorDestroyable = value;
+        }
+    }
+
+    private void Awake()
+    {
+        if (instance == null) // Makes the class a singleton
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // Make the GameObject persistent
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

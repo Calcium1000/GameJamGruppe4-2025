@@ -3,24 +3,27 @@ using UnityEngine;
 public class SFXManager : MonoBehaviour
 {
     [SerializeField] AudioSource SFXSource;
+    [SerializeField] AudioSource WalkingSoundSource;
     private static SFXManager instance;
 
-    public AudioClip[] dialogueAv;
-    public AudioClip[] doorSounds;
-    public AudioClip[] femmeAv;
-    public AudioClip[] hitSounds;
-    public AudioClip[] mascAv;
-    public AudioClip[] swingSounds;
-    public AudioClip[] toiletDoorSounds;
+    private AudioClip[] dialogueAv;
+    private AudioClip[] doorSounds;
+    private AudioClip[] femmeAv;
+    private AudioClip[] hitSounds;
+    private AudioClip[] mascAv;
+    private AudioClip[] swingSounds;
+    private AudioClip[] toiletDoorSounds;
+    private AudioClip walkingSound;
 
-    System.Random rand = new System.Random(); //RNG used for playing random sound from list
+    private bool isWalkingSoundPlaying = false;
+
+    System.Random rand = new System.Random(); //RNG used for playing random sound from folders of sounds
     int currentRandNum;
     int previousRandNum;
 
     // Makes the game object persist between scenes
     private void Awake()
     {
-        
         if (instance == null) //Makes the class a singleton
         {
             instance = this;
@@ -30,9 +33,6 @@ public class SFXManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    private void Start()
-    {
         dialogueAv = Resources.LoadAll<AudioClip>("SFX/dialogueAv");
         doorSounds = Resources.LoadAll<AudioClip>("SFX/doorSounds");
         femmeAv = Resources.LoadAll<AudioClip>("SFX/femmeAv");
@@ -40,6 +40,11 @@ public class SFXManager : MonoBehaviour
         mascAv = Resources.LoadAll<AudioClip>("SFX/mascAv");
         swingSounds = Resources.LoadAll<AudioClip>("SFX/swingSounds");
         toiletDoorSounds = Resources.LoadAll<AudioClip>("SFX/toiletDoorSounds");
+        walkingSound = Resources.Load<AudioClip>("SFX/gålyd2");
+    }
+    private void Start()
+    {
+        
     }
 
     //Plays audio clips and ensures that one sound is never played twice in a row
@@ -125,7 +130,28 @@ public class SFXManager : MonoBehaviour
     {
         SFXSource.PlayOneShot(clip);
     }
-
+    public void PlayWalkingSound(bool isWalking)
+    {
+        if (isWalking)
+        {
+            if (!isWalkingSoundPlaying)
+            {
+                WalkingSoundSource.clip = walkingSound;
+                WalkingSoundSource.Play();
+                WalkingSoundSource.loop = true;
+                isWalkingSoundPlaying = true;
+            }
+        }
+        else
+        {
+            if (isWalkingSoundPlaying)
+            {
+                WalkingSoundSource.Stop();
+                WalkingSoundSource.loop = false;
+                isWalkingSoundPlaying = false;
+            }
+        }
+    }
 
     //public void OtherPlayFemmeSound()
     //{
