@@ -22085,7 +22085,7 @@ GameObject:
   - component: {fileID: 8104178232508010346}
   - component: {fileID: -4420247367442365564}
   m_Layer: 0
-  m_Name: Character
+  m_Name: Broken Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22100,8 +22100,8 @@ Transform:
   m_GameObject: {fileID: 9113538606595474695}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5721226, y: 3.7192225, z: 0.67908144}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.20518468, y: 0.20518468, z: 0.20518468}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2245245738836772618}
@@ -22373,3 +22373,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e49e1cf02347848bc7e110125ad793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieces: []

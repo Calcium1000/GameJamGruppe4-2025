@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unbrokenObjects: []
-  sceneObjects: []
+  brokenObjects: []
   brokenVersion: {fileID: 3452237273256752275, guid: e655ac9102bf6cd419e50956a18105dd, type: 3}
 --- !u!54 &5067323560543576385
 Rigidbody:
@@ -163,7 +163,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &2112499025315417329
 BoxCollider:

@@ -79,11 +79,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void Awake()
     {
         if (instance == null) // Makes the class a singleton
