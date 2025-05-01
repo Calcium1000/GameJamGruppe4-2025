@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.WSA;
 using Application = UnityEngine.Application;
 using Object = System.Object;
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     
     private string unbrokenObjectFolder;
     private GameObject go;
+    private Scene currentScene;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,8 +30,16 @@ public class GameManager : MonoBehaviour
             {
                 obj.GameObject().AddComponent<Rigidbody>();
             }
+            Rigidbody rigidBody = obj.GetComponent<Rigidbody>();
+            rigidBody.useGravity = false;
         }
-        
+        currentScene = SceneManager.GetActiveScene();
+        GameObject[] gameObjects = currentScene.GetRootGameObjects();
+        foreach (var go in gameObjects)
+        {
+            Rigidbody rigidBody = go.GetComponent<Rigidbody>();
+            rigidBody.useGravity = false;
+        }
         
     }
 
