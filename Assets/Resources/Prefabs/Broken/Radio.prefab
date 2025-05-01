@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2242737321793218651}
   - component: {fileID: 8700268391290181968}
   m_Layer: 0
-  m_Name: Radio 1
+  m_Name: Radio
   m_TagString: Props
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

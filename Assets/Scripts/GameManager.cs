@@ -1,7 +1,9 @@
+using System;
 using System.IO;
 using Mono.Cecil;
 using Unity.VisualScripting;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,12 +13,14 @@ public class GameManager : MonoBehaviour
     private bool _furnitureDestroyable = false;
     private bool _wallsDestroyable = false;
     private bool _floorDestroyable = false;
+    private bool _propsDestroyable = false;
+    
 
     public bool FurnitureDestroyable
     {
         get
         {
-            if (GameObject.FindGameObjectsWithTag("Femme mob").Length == 0 && GameObject.FindGameObjectsWithTag("masc mob").Length == 0)
+            if (GameObject.FindGameObjectsWithTag("Mob").Length == 0)
             {
                 _furnitureDestroyable = true;
             }
@@ -26,6 +30,22 @@ public class GameManager : MonoBehaviour
         {
             _furnitureDestroyable = value;
         }
+    }
+
+    public bool PropsDestroyable
+    {
+        get
+        {
+            if (GameObject.FindGameObjectsWithTag("Props").Length == 0)
+            {
+                _propsDestroyable = true;
+            }
+            return _propsDestroyable;
+        }
+        set
+        {
+            _propsDestroyable = value;
+        }  
     }
     public bool WallsDestroyable
     {
@@ -59,6 +79,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        
+    }
+
     private void Awake()
     {
         if (instance == null) // Makes the class a singleton
@@ -68,9 +93,17 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         
         unbrokenObjects = Resources.LoadAll(Path.Combine("Prefabs", "Unbroken"), typeof(GameObject));
+        foreach (var obj in unbrokenObjects)
+        {
+            GameObject go = obj as GameObject;
+            if (go.TryGetComponent(out Rigidbody rb) && go != null)
+            {
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+            }
+        }
     }
 }
