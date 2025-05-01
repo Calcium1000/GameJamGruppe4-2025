@@ -2,21 +2,32 @@ using UnityEngine;
 
 public class RadioBehaviour : MonoBehaviour
 {
-    [SerializeField] AudioSource musicPlayer;
-    public AudioClip technoTrack;
-    public AudioClip classical;
+    public AudioSource musicPlayer;
+    private AudioClip technoTrack;
+    private AudioClip classical;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public static bool hitOnce = false;
+    private bool classicalPlaying = false;
     void Start()
     {
         musicPlayer = GetComponent<AudioSource>();
+        technoTrack = Resources.Load<AudioClip>("Music/techno gamejam 2025");
+        classical = Resources.Load<AudioClip>("Music/hildegard gamejam");
         musicPlayer.clip = technoTrack;
         musicPlayer.Play();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void ChangeToClassical()
     {
-        
+        musicPlayer.Stop();
+        musicPlayer.clip = classical;
+        musicPlayer.PlayDelayed(0.3f);
+    }
+    private void Update()
+    {
+        if (hitOnce && !classicalPlaying)
+        {
+            ChangeToClassical();
+            classicalPlaying = true;
+        }
     }
 }
