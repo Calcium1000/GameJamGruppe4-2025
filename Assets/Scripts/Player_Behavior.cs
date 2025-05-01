@@ -47,7 +47,15 @@ public class Player_Behavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 movement = transform.forward * movementDirection.y+ transform.right * movementDirection.x;
+        Vector3 forward = transform.forward;
+        forward.y = 0; // Flatten the forward vector
+        forward.Normalize(); // Normalize to maintain direction
+
+        Vector3 right = transform.right;
+        right.y = 0; // Flatten the right vector
+        right.Normalize(); // Normalize to maintain direction
+
+        Vector3 movement = forward * movementDirection.y + right * movementDirection.x;
         movement *= movementSpeed;
         playerRigidBody.linearVelocity = movement;
 
