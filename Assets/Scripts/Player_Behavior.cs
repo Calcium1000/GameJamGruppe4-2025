@@ -16,19 +16,17 @@ public class Player_Behavior : MonoBehaviour
     private Vector2 movementDirection;
     private float movementSpeed = 10f;
     private SFXManager sfxManager;
-    private GameManager gameManager;
+    public GameManager gameManager;
 
     private bool isWalking = false;
 
     HashSet<GameObject> destroyedGameObjects;
-    
-    
-    void Awake()
     public Transform shakeyTransform;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        destroyedGameObjects = new HashSet<GameObject>();
         playerCamera = GetComponentInChildren<Camera>();
         Debug.Log(playerCamera.name);
         playerRigidBody = GetComponent<Rigidbody>();
@@ -58,20 +56,20 @@ public class Player_Behavior : MonoBehaviour
         }
         if (Physics.Raycast(ray, out hit, maximumDistanceOfRay))
         {
-            if (hit.collider.CompareTag("Mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
+            if (hit.collider.CompareTag("Mob") & !destroyedGameObjects.Contains(hit.collider.gameObject))
             {
                 DestroyAndAddToDestroyedList();
                 sfxManager.PlayFemmeAvSound();
             }
-            else if (hit.collider.CompareTag("Furniture") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
+            else if (hit.collider.CompareTag("Furniture") & !destroyedGameObjects.Contains(hit.collider.gameObject) & gameManager.FloorDestroyable)
             {
                 DestroyAndAddToDestroyedList();
             }
-            else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.WallsDestroyable)
+            else if (hit.collider.CompareTag("Walls") & !destroyedGameObjects.Contains(hit.collider.gameObject) & gameManager.WallsDestroyable)
             {
                 DestroyAndAddToDestroyedList();
             }
-            else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
+            else if (hit.collider.CompareTag("Floor") & !destroyedGameObjects.Contains(hit.collider.gameObject) & gameManager.FloorDestroyable)
             {
                 DestroyAndAddToDestroyedList();
             }
@@ -80,6 +78,7 @@ public class Player_Behavior : MonoBehaviour
 
     void OnAttack(InputValue value)
     {
+        Debug.Log("Attack");
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Swing"))
         {
             animator.Play("Attack Swing");
