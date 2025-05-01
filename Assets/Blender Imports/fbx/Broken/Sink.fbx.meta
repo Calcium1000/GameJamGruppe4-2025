@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Blender Imports/fbx/Broken/Sink.fbx.meta
 guid: e3fbc4dc54a279e4daaef896009cea1d
+========
+guid: c16d927104b5d644c9e7795ace75d85e
+>>>>>>>> main:Assets/Blender Imports/fbx/Sink.fbx.meta
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
