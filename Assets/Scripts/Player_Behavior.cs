@@ -20,7 +20,7 @@ public class Player_Behavior : MonoBehaviour
 
     private bool isWalking;
 
-    HashSet<GameObject> hitMobs;
+    HashSet<GameObject> destroyedGameObjects;
     
     
     void Awake()
@@ -34,7 +34,7 @@ public class Player_Behavior : MonoBehaviour
         animator = GetComponent<Animator>();
         sfxManager = FindAnyObjectByType<SFXManager>();
         gameManager = FindAnyObjectByType<GameManager>();
-        hitMobs = new HashSet<GameObject>();
+        destroyedGameObjects = new HashSet<GameObject>();
     }
 
     void OnMove(InputValue value)
@@ -46,33 +46,35 @@ public class Player_Behavior : MonoBehaviour
     {
         RaycastHit hit;
         float maximumDistanceOfRay = 2;
-        void CollideDestroyPlaySFX()
+        void DestroyAndAddToDestroyedList()
         {
-            hitMobs.Add(hit.collider.gameObject);
+            destroyedGameObjects.Add(hit.collider.gameObject);
             Destroy(hit.collider.gameObject);
-            sfxManager.PlayFemmeAvSound();
+            sfxManager.PlayHitSound();
         }
         if (Physics.Raycast(ray, out hit, maximumDistanceOfRay))
         {
-            if (hit.collider.CompareTag("Femme mob") && !hitMobs.Contains(hit.collider.gameObject))
+            if (hit.collider.CompareTag("Femme mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
             {
-                CollideDestroyPlaySFX();
+                DestroyAndAddToDestroyedList();
+                sfxManager.PlayFemmeAvSound();
             }
-            else if (hit.collider.CompareTag("Masc mob") && !hitMobs.Contains(hit.collider.gameObject))
+            else if (hit.collider.CompareTag("Masc mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
             {
-                CollideDestroyPlaySFX();
+                DestroyAndAddToDestroyedList();
+                sfxManager.PlayMascAvSound();
             }
-            else if (hit.collider.CompareTag("Furniture") && gameManager.FloorDestroyable)
+            else if (hit.collider.CompareTag("Furniture") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
             {
-                CollideDestroyPlaySFX();
+                DestroyAndAddToDestroyedList();
             }
-            else if (hit.collider.CompareTag("Walls") && gameManager.WallsDestroyable)
+            else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.WallsDestroyable)
             {
-                CollideDestroyPlaySFX();
+                DestroyAndAddToDestroyedList();
             }
-            else if (hit.collider.CompareTag("Floor") && gameManager.FloorDestroyable)
+            else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
             {
-                CollideDestroyPlaySFX();
+                DestroyAndAddToDestroyedList();
             }
         }
     }
