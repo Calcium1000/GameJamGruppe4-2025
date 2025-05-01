@@ -11,7 +11,6 @@ public class Player_Behavior : MonoBehaviour
     private Animator animator;
     private Camera playerCamera;
     private Rigidbody playerRigidBody;
-    private InputSystem_Actions inputSystem;
     private Vector2 movementDirection;
     private float movementSpeed = 10f;
     public Transform shakeyTransform;
@@ -19,11 +18,16 @@ public class Player_Behavior : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
         playerCamera = GetComponentInChildren<Camera>();
         Debug.Log(playerCamera.name);
         playerRigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        try {
+            InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+        } catch
+        {
+            Debug.Log("Gyroscope not available");
+        }
     }
 
     void OnMove(InputValue value)
@@ -66,8 +70,14 @@ public class Player_Behavior : MonoBehaviour
         Vector3 eulerAngles = Camera.main.transform.eulerAngles;
         eulerAngles.z = 0;
         Camera.main.transform.eulerAngles = eulerAngles;
+        try
+        {
+            ShakeyCam();
 
-        ShakeyCam();
+        } catch
+        {
+            Debug.Log("Gyroscope not available");
+        }
     }
     void ShakeyCam()
     {
