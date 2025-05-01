@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public class Player_Behavior : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class Player_Behavior : MonoBehaviour
     void CheckRayCollision(Ray ray)
     {
         RaycastHit hit;
-        float maximumDistanceOfRay = 2;
+        float maximumDistanceOfRay = 5;
         void DestroyAndAddToDestroyedList()
         {
             destroyedGameObjects.Add(hit.collider.gameObject);
@@ -54,15 +55,10 @@ public class Player_Behavior : MonoBehaviour
         }
         if (Physics.Raycast(ray, out hit, maximumDistanceOfRay))
         {
-            if (hit.collider.CompareTag("Femme mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
+            if (hit.collider.CompareTag("Mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
             {
                 DestroyAndAddToDestroyedList();
                 sfxManager.PlayFemmeAvSound();
-            }
-            else if (hit.collider.CompareTag("Masc mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
-            {
-                DestroyAndAddToDestroyedList();
-                sfxManager.PlayMascAvSound();
             }
             else if (hit.collider.CompareTag("Furniture") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
             {
@@ -84,7 +80,7 @@ public class Player_Behavior : MonoBehaviour
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Swing"))
         {
             animator.Play("Attack Swing");
-            sfxManager.PlaySwingSound();
+            //sfxManager.PlaySwingSound();
             //shoot 10 rats in cone
             int numRays = 10;
             float deg = 10f;
