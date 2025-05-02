@@ -34,7 +34,7 @@ public class BrokenObject : MonoBehaviour
         timePassed += Time.deltaTime;
         if (timePassed >= 5.0f)
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }
