@@ -47,25 +47,30 @@ public class Player_Behavior : MonoBehaviour
     {
         RaycastHit hit;
         float maximumDistanceOfRay = 5;
-
+        void DestroyAndAddToDestroyedList()
+        {
+            destroyedGameObjects.Add(hit.collider.gameObject);
+            Destroy(hit.collider.gameObject);
+            sfxManager.PlayHitSound();
+        }
         if (Physics.Raycast(ray, out hit, maximumDistanceOfRay))
         {
             if (hit.collider.CompareTag("Mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
             {
-                hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
+                DestroyAndAddToDestroyedList();
                 sfxManager.PlayFemmeAvSound();
             }
             else if (hit.collider.CompareTag("Furniture") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
             {
-                hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
+                DestroyAndAddToDestroyedList();
             }
             else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.WallsDestroyable)
             {
-                hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
+                DestroyAndAddToDestroyedList();
             }
             else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
             {
-                hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
+                DestroyAndAddToDestroyedList();
             }
         }
     }
@@ -75,7 +80,7 @@ public class Player_Behavior : MonoBehaviour
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Swing"))
         {
             animator.Play("Attack Swing");
-            sfxManager.PlaySwingSound();
+            //sfxManager.PlaySwingSound();
             //shoot 10 rats in cone
             int numRays = 10;
             float deg = 10f;
@@ -90,6 +95,9 @@ public class Player_Behavior : MonoBehaviour
 
     void Update()
     {
+        Vector3 forward = Camera.main.transform.forward;
+        forward.y = 0; // Flatten the forward vector
+        forward.Normalize(); // Normalize to maintain direction
         if (movementDirection.x != 0 || movementDirection.y != 0)
         {
             isWalking = true;

@@ -103,6 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicPlayer: {fileID: 0}
+  technoTrack: {fileID: 0}
+  classical: {fileID: 0}
 --- !u!114 &-1555751195902416638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unbrokenObjects: []
-  brokenObjects: []
+  sceneObjects: []
   brokenVersion: {fileID: 1355498295244486717}
 --- !u!54 &2242737321793218651
 Rigidbody:
