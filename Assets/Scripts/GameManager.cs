@@ -1,22 +1,15 @@
-using System;
-using System.IO;
-using Mono.Cecil;
-using Unity.VisualScripting;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    [SerializeField] Object[] unbrokenObjects, brokenObjects;
 
     private bool _furnitureDestroyable = false;
     private bool _wallsDestroyable = false;
     private bool _floorDestroyable = false;
     private bool _propsDestroyable = false;
-    
 
-    public bool FurnitureDestroyable
+    public bool PropsDestroyable
     {
         get
         {
@@ -120,15 +113,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     private void Awake()
     {
-        _levelState = new levelState();
-        _levelState.state = 0;
-        _levelState.levelFinished = false;
-        _levelState.destructableGameObjects = GameObject.FindGameObjectsWithTag("Mob");
+
         if (instance == null) // Makes the class a singleton
         {
             instance = this;
@@ -136,25 +126,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
-        
-        unbrokenObjects = Resources.LoadAll(Path.Combine("Prefabs", "Unbroken"), typeof(GameObject));
-        foreach (var obj in unbrokenObjects)
-        {
-            GameObject go = obj as GameObject;
-            if (go.TryGetComponent(out Rigidbody rb) && go != null)
-            {
-                rb.constraints = RigidbodyConstraints.FreezeAll;
-            }
-            
-        }
-    }
-
-    private struct levelState
-    {
-        public int state;
-        public GameObject[] destructableGameObjects;
-        public bool levelFinished;
     }
 }

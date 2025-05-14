@@ -59,7 +59,8 @@ public class Player_Behavior : MonoBehaviour
         {
             if (hit.collider.CompareTag("Mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
             {
-                hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
+                DestroyAndAddToDestroyedList();
                 sfxManager.PlayFemmeAvSound();
             }
             else if (hit.collider.CompareTag("Props") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.PropsDestroyable)
@@ -69,15 +70,24 @@ public class Player_Behavior : MonoBehaviour
             }
             else if (hit.collider.CompareTag("Furniture") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FurnitureDestroyable)
             {
-                hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
             else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.WallsDestroyable)
             {
-                hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
             else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
             {
-                hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
+                DestroyAndAddToDestroyedList();
+            }
+            else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.WallsDestroyable)
+            {
+                DestroyAndAddToDestroyedList();
+            }
+            else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
+            {
+                DestroyAndAddToDestroyedList();
             }
         }
     }

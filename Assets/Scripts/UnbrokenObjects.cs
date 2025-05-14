@@ -6,7 +6,7 @@ using Random = System.Random;
 
 public class UnbrokenObjects : GameManager
 {
-    [SerializeField] protected GameObject brokenVersion;
+    [SerializeField] GameObject brokenVersion;
     protected SFXManager sFXManager;
     protected static Random random;
     
