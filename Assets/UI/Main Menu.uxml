@@ -1,0 +1,19 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Main%20Menu%20USS.uss?fileID=7433441132597879392&amp;guid=934b3196a299e2045bba011ff9de07da&amp;type=3#Main Menu USS" />
+    <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+        <engine:VisualElement name="Backdrop" style="flex-grow: 1; width: 380px;">
+            <engine:VisualElement name="TitleScreen" style="flex-grow: 1; position: relative; left: auto;">
+                <engine:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Images/DESTROY%201.png?fileID=2800000&amp;guid=abdc29088330cd04cb8378e39e8db3db&amp;type=3#DESTROY 1&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; flex-direction: column; align-items: center; justify-content: center;">
+                <engine:Button text="Start Game" class="Button" />
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; justify-content: center; align-items: center;">
+                <engine:Button text="Settings" class="Button" />
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+                <engine:Button text="End Game" class="Button" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
