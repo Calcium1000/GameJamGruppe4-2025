@@ -3,6 +3,7 @@ using UnityEngine;
 public class UnbrokenObjects : GameManager
 {
     [SerializeField] private GameObject brokenVersion;
+    public bool isDestroyed = false;
 
     public void isAttacked()
     {

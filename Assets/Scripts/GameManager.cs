@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private bool _wallsDestroyable = false;
     private bool _floorDestroyable = false;
     private bool _propsDestroyable = false;
+
+    private bool[] thingsDestroyable;
     
     [SerializeField] private levelState _levelState;
     
@@ -22,9 +24,10 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (GameObject.FindGameObjectsWithTag("Mob").Length == 0)
+            if (_levelState.destructableGameObjects.Length == 0)
             {
                 _furnitureDestroyable = true;
+                _levelState.state++;
             }
             return _furnitureDestroyable;
         }
@@ -88,10 +91,16 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
-        _levelState = new levelState();
-        _levelState.state = 0;
-        _levelState.levelFinished = false;
-        _levelState.destructableGameObjects = GameObject.FindGameObjectsWithTag("Mob");
+        thingsDestroyable = new bool[4]
+            { _furnitureDestroyable, _wallsDestroyable, _floorDestroyable, _propsDestroyable };
+        _levelState = new levelState
+        {
+            state = 0,
+            levelFinished = false,
+            
+        };
+        Debug.Log("There are " + _levelState.destructableGameObjects.Length + " mobs");
+        
         if (instance == null) // Makes the class a singleton
         {
             instance = this;
@@ -119,5 +128,22 @@ public class GameManager : MonoBehaviour
         public int state;
         public GameObject[] destructableGameObjects;
         public bool levelFinished;
+
+        void setDstructableGameObjects()
+        {
+            switch (state)
+            {
+                case 0:
+                    destructableGameObjects = GameObject.FindGameObjectsWithTag("Mob");
+                    break;
+                case 1: destructableGameObjects = GameObject.FindGameObjectsWithTag("Props"); 
+                    break;
+                case 2: destructableGameObjects = GameObject.FindGameObjectsWithTag("Furniture");
+                    break;
+                case 3: destructableGameObjects = GameObject.FindGameObjectsWithTag("Walls");
+                    break;
+                
+            }
+        }
     }
 }
