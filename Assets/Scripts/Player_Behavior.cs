@@ -54,26 +54,25 @@ public class Player_Behavior : MonoBehaviour
         {
             if (hit.collider.CompareTag("Mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
             {
-                hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
-                mobs = GameObject.FindGameObjectsWithTag("Mob");
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
                 sfxManager.PlayFemmeAvSound();
-                foreach(var OB in GameObject.FindGameObjectsWithTag("Mob"))
-                {
-                    Debug.Log(OB.name);
-                }
-                Debug.Log(GameObject.FindGameObjectsWithTag("Mob").Length);
             }
-            else if (hit.collider.CompareTag("Furniture") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
+            else if (hit.collider.CompareTag("Props") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.PropsDestroyable)
             {
-                hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
+                Debug.Log("Prop is hit");
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
+            }
+            else if (hit.collider.CompareTag("Furniture") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FurnitureDestroyable)
+            {
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
             else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.WallsDestroyable)
             {
-                hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
             else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
             {
-                hit.collider.GetComponent<UnbrokenObjects>().isAttacked();
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
         }
     }
