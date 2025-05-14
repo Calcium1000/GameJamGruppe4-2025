@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using Mono.Cecil;
 using Unity.VisualScripting;
@@ -86,6 +88,18 @@ public class GameManager : MonoBehaviour
         
     }
 
+    private void Start()
+    {
+        StartCoroutine(setDestroySign());
+    }
+
+    private IEnumerator setDestroySign()
+    {
+        Debug.Log("Summoning DESTROY Sign");
+        yield return new WaitForSeconds(3);
+        
+    }
+
     private void Awake()
     {
         _levelState = new levelState();
@@ -114,6 +128,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
     private struct levelState
     {
         public int state;

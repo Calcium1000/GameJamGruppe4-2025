@@ -2044,7 +2044,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1628022107}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2249,8 +2249,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 36.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1628022107}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &661569889
@@ -2337,6 +2336,10 @@ PrefabInstance:
     - target: {fileID: 1678790445557056119, guid: eff62eacdf2a42a449da224a77aed3f6, type: 3}
       propertyPath: m_Name
       value: Stall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678790445557056119, guid: eff62eacdf2a42a449da224a77aed3f6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8134525856761923223, guid: eff62eacdf2a42a449da224a77aed3f6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5601,6 +5604,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1678790445557056119, guid: eff62eacdf2a42a449da224a77aed3f6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8134525856761923223, guid: eff62eacdf2a42a449da224a77aed3f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.52
@@ -6880,6 +6887,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Round Table
       objectReference: {fileID: 0}
+    - target: {fileID: 6967122576526949883, guid: 41f08a83c50fd2b4e9c7546c03e8bec3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6981285796303943442, guid: 41f08a83c50fd2b4e9c7546c03e8bec3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.576639
@@ -7033,6 +7044,10 @@ PrefabInstance:
     - target: {fileID: 1678790445557056119, guid: eff62eacdf2a42a449da224a77aed3f6, type: 3}
       propertyPath: m_Name
       value: Stall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678790445557056119, guid: eff62eacdf2a42a449da224a77aed3f6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8134525856761923223, guid: eff62eacdf2a42a449da224a77aed3f6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7188,6 +7203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Office Walls
       objectReference: {fileID: 0}
+    - target: {fileID: 7486869128074782041, guid: c1de772e33820e94089f82b2ffa8f355, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7244,6 +7263,10 @@ PrefabInstance:
     - target: {fileID: 6500923472544683874, guid: 60928ccb132068444b138de6391c4c34, type: 3}
       propertyPath: m_Name
       value: Pot Plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500923472544683874, guid: 60928ccb132068444b138de6391c4c34, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6500923472544683874, guid: 60928ccb132068444b138de6391c4c34, type: 3}
       propertyPath: m_TagString
@@ -7309,6 +7332,10 @@ PrefabInstance:
     - target: {fileID: 7239989525982859998, guid: fb189649e40a3ea4dae43b04ac43940c, type: 3}
       propertyPath: m_Name
       value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239989525982859998, guid: fb189649e40a3ea4dae43b04ac43940c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7512,26 +7539,15 @@ PrefabInstance:
     - target: {fileID: 8340052442628848131, guid: a25a75ba93db28f4580101803bf979ea, type: 3}
       propertyPath: musicPlayer
       value: 
-      objectReference: {fileID: 755951865}
+      objectReference: {fileID: 0}
     - target: {fileID: 8340052442628848131, guid: a25a75ba93db28f4580101803bf979ea, type: 3}
       propertyPath: technoTrack
       value: 
       objectReference: {fileID: 8300000, guid: 1028d4f53ffb4b444a963a3ef63fcda1, type: 3}
-    - target: {fileID: 8340052442628848131, guid: a25a75ba93db28f4580101803bf979ea, type: 3}
-      propertyPath: musicPlayer
-      value: 
-      objectReference: {fileID: 2017649233}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1355498295244486717, guid: a25a75ba93db28f4580101803bf979ea, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 755951865}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1355498295244486717, guid: a25a75ba93db28f4580101803bf979ea, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2017649233}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a25a75ba93db28f4580101803bf979ea, type: 3}
 --- !u!1001 &5252005767400828223
 PrefabInstance:
@@ -7780,6 +7796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: watering_can_B
       objectReference: {fileID: 0}
+    - target: {fileID: 4494148786323698295, guid: 92a658dfd307d3b41a3c79f697420e30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7836,6 +7856,10 @@ PrefabInstance:
     - target: {fileID: 7009773209426871576, guid: 4a30d63fec972c4438b8d95624a383dd, type: 3}
       propertyPath: m_Name
       value: Toilet Walls
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009773209426871576, guid: 4a30d63fec972c4438b8d95624a383dd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7896,7 +7920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4022803290748714225, guid: 02d8cdea045b1e74e8d80caff3d83d46, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7975,6 +7999,10 @@ PrefabInstance:
     - target: {fileID: 503669106141512429, guid: d53c2573253b39648a01371ae5d80b2e, type: 3}
       propertyPath: m_Name
       value: Shelf
+      objectReference: {fileID: 0}
+    - target: {fileID: 503669106141512429, guid: d53c2573253b39648a01371ae5d80b2e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1290574831037847103, guid: d53c2573253b39648a01371ae5d80b2e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8311,6 +8339,5 @@ SceneRoots:
   - {fileID: 123031963}
   - {fileID: 6268525014766514306}
   - {fileID: 3385666974327105147}
-  - {fileID: 1173198853}
   - {fileID: 634967739}
-  - {fileID: 1662311430}
+  - {fileID: 607686939}
