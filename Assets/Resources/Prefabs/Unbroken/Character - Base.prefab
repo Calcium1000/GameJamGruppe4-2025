@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 5182356659393118108}
   - component: {fileID: 4263170840682427212}
   - component: {fileID: 2944200402152645223}
-  - component: {fileID: -4852746504788886666}
+  - component: {fileID: 1890755387997888763}
   m_Layer: 0
   m_Name: Character - Base
   m_TagString: Mob
@@ -460,7 +460,7 @@ CapsuleCollider:
   m_Height: 7.087505
   m_Direction: 1
   m_Center: {x: 0, y: 3.043752, z: 0.027130853}
---- !u!114 &-4852746504788886666
+--- !u!114 &1890755387997888763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

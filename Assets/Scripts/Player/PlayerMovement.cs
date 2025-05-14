@@ -7,39 +7,31 @@ using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 // Først skal man bruge "InputSystem" library
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Player_Behavior
 {
-
-    private Vector2 movement; // Man skal kunne gemme det fra "Vector2" som kommer ind når brugeren trykker på knappen på skærmen ind på movement
+    private Vector2 movementDir; // Man skal kunne gemme det fra "Vector2" som kommer ind når brugeren trykker på knappen på skærmen ind på movement
     private Rigidbody2D myBody; // Her er det rigidbody man flytter rundt på
     private Animator myAnimator; // Her laver man en animator variable så den kan ændres i koden
     public Transform shakeyTransform;
     public TMP_Text label;
+    [SerializeField] private float speed = 5;
+
 
     private void OnTilt(InputValue value)
     {
         var tilt = value.Get<Vector3>();
         label.text = tilt.ToString();
-
+        Debug.Log(tilt.ToString());
     }
 
-    [SerializeField] private int speed = 5;
 
     private void Awake() // Denne her del - Awake - køre kun en gang når programmet starter op
-
-    // Start is called before the first frame update
     {
         myBody = GetComponent<Rigidbody2D>(); // Her sætter man myBody rigidbody til rigidbody på det gameobject man er på
 
         InputSystem.EnableDevice(UnityEngine.InputSystem.Accelerometer.current);
         InputSystem.EnableDevice(UnityEngine.InputSystem.GravitySensor.current);
         InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
-
-
-
-
-
-
     }
     private void Update()
     {
@@ -51,26 +43,22 @@ public class PlayerMovement : MonoBehaviour
         if ((currRotation + rotation).magnitude < 30) {
             shakeyTransform.Rotate(rotation);
         }
-
+        if (movementDir.x != 0 || movementDir.y != 0)
+        {
+            isWalking = true;
+            Vector3 movement = new Vector3(-movementDir.y, 0, movementDir.x) * speed;
+            playerRigidBody.linearVelocity = movement;
+        }
+        else
+        {
+            isWalking = false;
+        }
         
     }
-    // Update is called once per frame
-    private void OnMovement(InputValue value) // Her laver man en funktion som holder øje med Input systems value, altså dens værdi
+    
+    void OnMove(InputValue value)
     {
-        movement = value.Get<Vector2>(); // Her bliver movement sat til Vector2 fra Input Action når brugeren trykker på WASD-knapperne
-
-        if (movement.x != 0 || movement.y != 0) { // Her bliver value.vector2 sat til [0,0] når WASD ikke bliver trykket på
-
-        }
-    else 
-    {
-
+        movementDir = value.Get<Vector2>();
     }
-}
 
-    [System.Obsolete]
-    private void FixedUpdate() // Her giver man velocity af rigidbody2D den hastighed som er blevet sat
-    {
-        myBody.linearVelocity = movement * speed;
-    }
 }

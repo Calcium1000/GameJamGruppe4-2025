@@ -104,8 +104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicPlayer: {fileID: 443012591943008350}
-  technoTrack: {fileID: 8300000, guid: 1028d4f53ffb4b444a963a3ef63fcda1, type: 3}
-  classical: {fileID: 8300000, guid: 709578baa3b30374ba7988ed82e17472, type: 3}
 --- !u!114 &-1555751195902416638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unbrokenObjects: []
-  sceneObjects: []
+  brokenObjects: []
   brokenVersion: {fileID: 1355498295244486717}
 --- !u!54 &2242737321793218651
 Rigidbody:
@@ -146,7 +144,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &8700268391290181968
 BoxCollider:

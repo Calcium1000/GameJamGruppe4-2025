@@ -12,14 +12,13 @@ public class Player_Behavior : MonoBehaviour
     private PlayerInput playerInput;
     private Animator animator;
     private Camera playerCamera;
-    private Rigidbody playerRigidBody;
+    protected Rigidbody playerRigidBody;
     private InputSystem_Actions inputSystem;
-    private Vector2 movementDirection;
-    private float movementSpeed = 10f;
+ 
     private SFXManager sfxManager;
     private GameManager gameManager;
 
-    private bool isWalking = false;
+    protected bool isWalking = false;
 
     HashSet<GameObject> destroyedGameObjects;
     
@@ -38,10 +37,7 @@ public class Player_Behavior : MonoBehaviour
         destroyedGameObjects = new HashSet<GameObject>();
     }
 
-    void OnMove(InputValue value)
-    {
-        movementDirection = value.Get<Vector2>();
-    }
+    
 
     void CheckRayCollision(Ray ray)
     {
@@ -57,6 +53,11 @@ public class Player_Behavior : MonoBehaviour
         {
             if (hit.collider.CompareTag("Mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
             {
+                Debug.Log(hit.collider.gameObject.name);
+                if (hit.collider.gameObject.TryGetComponent<UnbrokenObjects>(out UnbrokenObjects unbrokenObjects))
+                {
+                    unbrokenObjects.isAttacked();
+                }
                 DestroyAndAddToDestroyedList();
                 sfxManager.PlayFemmeAvSound();
             }
@@ -98,18 +99,10 @@ public class Player_Behavior : MonoBehaviour
         Vector3 forward = Camera.main.transform.forward;
         forward.y = 0; // Flatten the forward vector
         forward.Normalize(); // Normalize to maintain direction
-        if (movementDirection.x != 0 || movementDirection.y != 0)
-        {
-            isWalking = true;
-        }
-        else
-        {
-            isWalking = false;
-        }
         sfxManager.PlayWalkingSound(isWalking);
 
-        Vector3 movement = new Vector3(-movementDirection.y, 0, movementDirection.x) * (movementSpeed);
-        playerRigidBody.linearVelocity = movement;
+        
+       
     }
 
     void drawRay(Ray ray)
