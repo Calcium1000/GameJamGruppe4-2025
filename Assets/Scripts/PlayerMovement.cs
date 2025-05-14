@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 rotation = UnityEngine.InputSystem.Gyroscope.current.angularVelocity.value;
         Vector3 rotationFixed = new Vector3(-rotation.x, -rotation.y,rotation.z);
         rotation = rotationFixed;
-        label.text = "val : " + rotation.ToString();
         shakeyTransform.rotation.ToAngleAxis(out float angle, out Vector3 axis);
         Vector3 currRotation = axis * angle;
         if ((currRotation + rotation).magnitude < 30) {
@@ -63,10 +62,10 @@ public class PlayerMovement : MonoBehaviour
         if (movement.x != 0 || movement.y != 0) { // Her bliver value.vector2 sat til [0,0] når WASD ikke bliver trykket på
 
         }
-        else 
-        {
+    else 
+    {
 
-        }
+    }
 }
 
     [System.Obsolete]

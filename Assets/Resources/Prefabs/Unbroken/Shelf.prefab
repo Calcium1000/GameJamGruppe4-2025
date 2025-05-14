@@ -14,11 +14,11 @@ GameObject:
   - component: {fileID: 5560926269619689644}
   m_Layer: 0
   m_Name: Shelf
-  m_TagString: Untagged
+  m_TagString: Props
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1290574831037847103
 Transform:
   m_ObjectHideFlags: 0
