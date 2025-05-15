@@ -97,7 +97,7 @@ public class Player_Behavior : MonoBehaviour
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Swing"))
         {
             animator.Play("Attack Swing");
-            //sfxManager.PlaySwingSound();
+            sfxManager.PlaySwingSound();
             //shoot 10 rats in cone
             int numRays = 10;
             float deg = 10f;

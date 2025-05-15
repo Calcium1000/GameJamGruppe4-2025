@@ -71,12 +71,13 @@ public class SFXManager : MonoBehaviour
     /// <returns></returns>
     public int NonRepeatingRNG(int upperLimit)
     {
-        currentRandNum = rand.Next(upperLimit);
-        if (currentRandNum == previousRandNum) //Calls itself until it generates a new random number
-        {
-            NonRepeatingRNG(upperLimit);
-            return currentRandNum;
+        if (upperLimit < 2) return 0;
+        int currentRandNum;
+        do {
+            currentRandNum = rand.Next(upperLimit);
         }
+        while (currentRandNum == previousRandNum);
+
         previousRandNum = currentRandNum;
         return currentRandNum;
     }
