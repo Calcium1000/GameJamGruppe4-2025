@@ -34,12 +34,7 @@ public class PlayerMovement : MonoBehaviour
         InputSystem.EnableDevice(UnityEngine.InputSystem.Accelerometer.current);
         InputSystem.EnableDevice(UnityEngine.InputSystem.GravitySensor.current);
         InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
-
-
-
-
-
-
+        
     }
     private void Update()
     {

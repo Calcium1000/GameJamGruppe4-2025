@@ -18,6 +18,7 @@ public class Player_Behavior : MonoBehaviour
     private float movementSpeed = 10f;
     private SFXManager sFXManager;
     private GameManager gameManager;
+    public Transform shakeyTransform;
 
     private bool isWalking = false;
 
@@ -36,8 +37,21 @@ public class Player_Behavior : MonoBehaviour
         sFXManager = FindAnyObjectByType<SFXManager>();
         gameManager = FindAnyObjectByType<GameManager>();
         destroyedGameObjects = new HashSet<GameObject>();
+        ShakeyCam();
     }
 
+    void ShakeyCam()
+    {
+        Vector3 rotation = UnityEngine.InputSystem.Gyroscope.current.angularVelocity.value;
+        Vector3 rotationFixed = new Vector3(-rotation.x, -rotation.y, rotation.z);
+        rotation = rotationFixed;
+        shakeyTransform.rotation.ToAngleAxis(out float angle, out Vector3 axis);
+        Vector3 currRotation = axis * angle;
+        if ((currRotation + rotation).magnitude < 30)
+        {
+            shakeyTransform.Rotate(rotation);
+        }
+    }
 
     void OnMove(InputValue value)
     {
@@ -123,6 +137,7 @@ public class Player_Behavior : MonoBehaviour
 
         Vector3 movement = new Vector3(-movementDirection.y, 0, movementDirection.x) * (movementSpeed);
         playerRigidBody.linearVelocity = movement;
+        ShakeyCam();
     }
 
     void drawRay(Ray ray)
