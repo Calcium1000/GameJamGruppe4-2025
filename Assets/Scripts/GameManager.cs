@@ -8,7 +8,19 @@ public class GameManager : MonoBehaviour
     private bool _wallsDestroyable = false;
     private bool _floorDestroyable = false;
     private bool _propsDestroyable = false;
+    private void Awake()
+    {
 
+        if (instance == null) // Makes the class a singleton
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public bool PropsDestroyable
     {
         get
@@ -108,25 +120,6 @@ public class GameManager : MonoBehaviour
         set
         {
             _floorDestroyable = value;
-        }
-    }
-
-    private void Update()
-    {
-
-    }
-
-    private void Awake()
-    {
-
-        if (instance == null) // Makes the class a singleton
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Make the GameObject persistent
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 }
