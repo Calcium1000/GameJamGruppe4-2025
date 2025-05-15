@@ -9,11 +9,11 @@ using Random = UnityEngine.Random;
 public class Player_Behavior : MonoBehaviour
 {
     private GameObject attackHand;
-    private PlayerInput playerInput;
+    protected PlayerInput playerInput;
+    public Rigidbody myBody; // Her er det rigidbody man flytter rundt på
     private Animator animator;
     private Camera playerCamera;
-    protected Rigidbody playerRigidBody;
-    private InputSystem_Actions inputSystem;
+    protected InputSystem_Actions inputSystem;
  
     private SFXManager sfxManager;
     private GameManager gameManager;
@@ -27,14 +27,14 @@ public class Player_Behavior : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         playerCamera = GetComponentInChildren<Camera>();
-        Debug.Log(playerCamera.name);
+        Debug.Log("playerCam: " + playerCamera.name);
         inputSystem = new InputSystem_Actions();
         inputSystem.Enable();
-        playerRigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         sfxManager = FindAnyObjectByType<SFXManager>();
         gameManager = FindAnyObjectByType<GameManager>();
         destroyedGameObjects = new HashSet<GameObject>();
+        myBody = GetComponent<Rigidbody>();
     }
 
     
@@ -78,6 +78,7 @@ public class Player_Behavior : MonoBehaviour
 
     void OnAttack(InputValue value)
     {
+        Debug.Log("Is attacking");
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Swing"))
         {
             animator.Play("Attack Swing");
@@ -100,9 +101,6 @@ public class Player_Behavior : MonoBehaviour
         forward.y = 0; // Flatten the forward vector
         forward.Normalize(); // Normalize to maintain direction
         sfxManager.PlayWalkingSound(isWalking);
-
-        
-       
     }
 
     void drawRay(Ray ray)

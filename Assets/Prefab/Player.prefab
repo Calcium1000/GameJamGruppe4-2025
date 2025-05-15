@@ -31,8 +31,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.36205, y: 4.362051, z: 4.36205}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5328734473332184947}
+  m_Children: []
   m_Father: {fileID: 7196895658992931589}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &6846790372620368433
@@ -273,12 +272,12 @@ Transform:
   m_GameObject: {fileID: 4807776675186576841}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.52956796, y: -0.34158233, z: 0.9582655}
-  m_LocalScale: {x: 13.792082, y: 13.792083, z: 13.792081}
+  m_LocalPosition: {x: 2.3100011, y: -1.4899993, z: 4.1800017}
+  m_LocalScale: {x: 60.161755, y: 60.161755, z: 60.161762}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4157657607119906430}
-  m_Father: {fileID: 7653597393191033705}
+  m_Father: {fileID: 843246660316337929}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &9105342006491142358
 MeshFilter:
@@ -381,6 +380,7 @@ GameObject:
   - component: {fileID: 2223749496784948155}
   - component: {fileID: 6591205895186239039}
   - component: {fileID: 8312526020282978930}
+  - component: {fileID: 6078036140962408952}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -402,6 +402,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7196895658992931589}
+  - {fileID: 5328734473332184947}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7871149697533169766
@@ -430,7 +431,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Touch
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -518,6 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d58b44621e32f48b6d3ca46a15be51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myBody: {fileID: 3168068489524909312}
 --- !u!114 &6591205895186239039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +544,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70417ba2fa8d554cbc452201a443a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myBody: {fileID: 0}
   shakeyTransform: {fileID: 7196895658992931589}
   label: {fileID: 0}
   speed: 5
+--- !u!114 &6078036140962408952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822353287450341739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4728bb0c24ac0941a11ceb16db433d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myBody: {fileID: 0}
+  sensitivity: 0.2
