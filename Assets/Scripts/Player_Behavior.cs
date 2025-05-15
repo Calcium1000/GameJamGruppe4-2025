@@ -22,10 +22,10 @@ public class Player_Behavior : MonoBehaviour
 
     private bool isWalking = false;
 
-    HashSet<GameObject> destroyedGameObjects;
-    
-    
-    void Awake()
+    private HashSet<GameObject> destroyedGameObjects;
+
+
+    private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         playerCamera = GetComponentInChildren<Camera>();
@@ -40,30 +40,28 @@ public class Player_Behavior : MonoBehaviour
         ShakeyCam();
     }
 
-    void ShakeyCam()
+    private void ShakeyCam()
     {
-        Vector3 rotation = UnityEngine.InputSystem.Gyroscope.current.angularVelocity.value;
-        Vector3 rotationFixed = new Vector3(-rotation.x, -rotation.y, rotation.z);
+        var rotation = UnityEngine.InputSystem.Gyroscope.current.angularVelocity.value;
+        var rotationFixed = new Vector3(-rotation.x, -rotation.y, rotation.z);
         rotation = rotationFixed;
-        shakeyTransform.rotation.ToAngleAxis(out float angle, out Vector3 axis);
-        Vector3 currRotation = axis * angle;
-        if ((currRotation + rotation).magnitude < 30)
-        {
-            shakeyTransform.Rotate(rotation);
-        }
+        shakeyTransform.rotation.ToAngleAxis(out var angle, out var axis);
+        var currRotation = axis * angle;
+        if ((currRotation + rotation).magnitude < 30) shakeyTransform.Rotate(rotation);
     }
 
-    void OnMove(InputValue value)
+    private void OnMove(InputValue value)
     {
         movementDirection = value.Get<Vector2>();
     }
+
     //void DestroyAndAddToDestroyedList()
     //{
     //    destroyedGameObjects.Add(hit.collider.gameObject);
     //    Destroy(hit.collider.gameObject);
     //    sFXManager.PlayHitSound();
     //}
-    void CheckRayCollision(Ray ray)
+    private void CheckRayCollision(Ray ray)
     {
         RaycastHit hit;
         float maximumDistanceOfRay = 5;
@@ -74,73 +72,77 @@ public class Player_Behavior : MonoBehaviour
                 hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
                 sFXManager.PlayFemmeAvSound();
             }
-            else if (hit.collider.CompareTag("Props") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.PropsDestroyable)
+            else if (hit.collider.CompareTag("Props") && !destroyedGameObjects.Contains(hit.collider.gameObject) &&
+                     gameManager.PropsDestroyable)
             {
                 Debug.Log("Prop is hit");
                 hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
-            else if (hit.collider.CompareTag("Furniture") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FurnitureDestroyable)
+            else if (hit.collider.CompareTag("Furniture") && !destroyedGameObjects.Contains(hit.collider.gameObject) &&
+                     gameManager.FurnitureDestroyable)
             {
                 hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
-            else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.WallsDestroyable)
+            else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) &&
+                     gameManager.WallsDestroyable)
             {
                 hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
-            else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
+            else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) &&
+                     gameManager.FloorDestroyable)
             {
                 hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
-            else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.WallsDestroyable)
+            else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) &&
+                     gameManager.WallsDestroyable)
             {
                 hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
-            else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
+            else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) &&
+                     gameManager.FloorDestroyable)
             {
                 hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
         }
     }
 
-    void OnAttack(InputValue value)
+    private void OnAttack(InputValue value)
     {
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Swing"))
         {
             animator.Play("Attack Swing");
             sFXManager.PlaySwingSound();
             //shoot 10 rats in cone
-            int numRays = 10;
-            float deg = 10f;
-            for (int i = 0; i < numRays; i++)
+            var numRays = 10;
+            var deg = 10f;
+            for (var i = 0; i < numRays; i++)
             {
-                Ray shot = new Ray(playerCamera.transform.position, Quaternion.Euler(0, (i - (numRays / 2)) * deg, 0) * playerCamera.transform.rotation * new Vector3(0, 0, 1));
+                var shot = new Ray(playerCamera.transform.position,
+                    Quaternion.Euler(0, (i - numRays / 2) * deg, 0) * playerCamera.transform.rotation *
+                    new Vector3(0, 0, 1));
                 drawRay(shot);
                 CheckRayCollision(shot);
             }
         }
     }
 
-    void Update()
+    private void Update()
     {
-        Vector3 forward = Camera.main.transform.forward;
+        var forward = Camera.main.transform.forward;
         forward.y = 0; // Flatten the forward vector
         forward.Normalize(); // Normalize to maintain direction
         if (movementDirection.x != 0 || movementDirection.y != 0)
-        {
             isWalking = true;
-        }
         else
-        {
             isWalking = false;
-        }
         sFXManager.PlayWalkingSound(isWalking);
 
-        Vector3 movement = new Vector3(-movementDirection.y, 0, movementDirection.x) * (movementSpeed);
+        var movement = new Vector3(-movementDirection.y, 0, movementDirection.x) * movementSpeed;
         playerRigidBody.linearVelocity = movement;
         ShakeyCam();
     }
 
-    void drawRay(Ray ray)
+    private void drawRay(Ray ray)
     {
         //ONLY VISIBLE IN GIZMOS VIEW
         Debug.DrawRay(ray.origin, ray.direction, Color.red, 1f);

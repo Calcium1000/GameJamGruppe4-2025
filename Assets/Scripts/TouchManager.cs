@@ -7,7 +7,8 @@ public class TouchManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Camera UICamera;
-    void Start()
+
+    private void Start()
     {
         UICamera = Camera.main.GetComponent<UniversalAdditionalCameraData>().cameraStack[0];
         EnhancedTouchSupport.Enable();
@@ -21,21 +22,16 @@ public class TouchManager : MonoBehaviour
     private void Touch_onFingerDown(Finger finger)
     {
         //see if user pressed on an object
-        RaycastHit2D hit = Physics2D.Raycast(UICamera.ScreenToWorldPoint(finger.screenPosition),Vector2.zero);
+        var hit = Physics2D.Raycast(UICamera.ScreenToWorldPoint(finger.screenPosition), Vector2.zero);
         if (hit)
-        {
             if (hit.collider.gameObject.TryGetComponent<TouchControl>(out var touchable))
-            {
                 //if object implements TouchControl
                 touchable.BindFinger(finger);
-            }
-        }
     }
 
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
     }
 }

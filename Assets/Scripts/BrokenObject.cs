@@ -6,16 +6,16 @@ public class BrokenObject : MonoBehaviour
     private int allowedPieces = 50;
     private Rigidbody rb;
     private float timePassed;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         gameObject.AddComponent(typeof(Rigidbody));
         rb = GetComponent<Rigidbody>();
         timePassed = 0;
-        
+
         rb.useGravity = false;
-        
+
         pieces = new GameObject[allowedPieces];
         // for (int i = 0; i < allowedPieces; i++)
         // {
@@ -29,12 +29,9 @@ public class BrokenObject : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         timePassed += Time.deltaTime;
-        if (timePassed >= 5.0f)
-        {
-            Destroy(gameObject);
-        }
+        if (timePassed >= 5.0f) Destroy(gameObject);
     }
 }

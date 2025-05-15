@@ -8,7 +8,8 @@ public class RadioBehaviour : MonoBehaviour
 
     public static bool hitOnce = false;
     private bool classicalPlaying = false;
-    void Start()
+
+    private void Start()
     {
         musicPlayer = GetComponent<AudioSource>();
         technoTrack = Resources.Load<AudioClip>("Music/techno gamejam 2025");
@@ -16,12 +17,14 @@ public class RadioBehaviour : MonoBehaviour
         musicPlayer.clip = technoTrack;
         musicPlayer.Play();
     }
+
     public void ChangeToClassical()
     {
         musicPlayer.Stop();
         musicPlayer.clip = classical;
         musicPlayer.PlayDelayed(0.3f);
     }
+
     private void Update()
     {
         if (hitOnce && !classicalPlaying)

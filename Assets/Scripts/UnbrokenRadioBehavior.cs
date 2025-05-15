@@ -10,7 +10,8 @@ public class UnbrokenRadioBehavior : UnbrokenObjects
     private AudioClip classical;
     private bool radioDestroyable = false;
     private bool classicalPlaying = false;
-    void Awake()
+
+    private void Awake()
     {
         Debug.Log("UnbrokenRadioBehavior instantiated");
         musicPlayer = GetComponent<AudioSource>();
@@ -20,20 +21,22 @@ public class UnbrokenRadioBehavior : UnbrokenObjects
         musicPlayer.Play();
         sFXManager = FindAnyObjectByType<SFXManager>();
     }
+
     private void ChangeToClassical()
     {
         musicPlayer.Stop();
         musicPlayer.clip = classical;
         musicPlayer.PlayDelayed(0.3f);
-
     }
-    IEnumerator MakeRadioDestroyable()
+
+    private IEnumerator MakeRadioDestroyable()
     {
         Debug.Log("Radio is soon destroyable");
         yield return new WaitForSeconds(2);
         radioDestroyable = true;
         Debug.Log("Radio is destroyable");
     }
+
     public override void IsAttacked()
     {
         Debug.Log("Radio is hit");
@@ -43,11 +46,13 @@ public class UnbrokenRadioBehavior : UnbrokenObjects
             ChangeToClassical();
             StartCoroutine(MakeRadioDestroyable());
         }
+
         if (!radioDestroyable)
         {
             sFXManager.PlayHitSound();
             return;
         }
+
         base.IsAttacked();
     }
 }
