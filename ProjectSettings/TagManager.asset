@@ -9,6 +9,7 @@ TagManager:
   - Walls
   - Floor
   - Furniture
+  - Broken object
   layers:
   - Default
   - TransparentFX

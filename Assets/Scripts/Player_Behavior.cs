@@ -18,6 +18,7 @@ public class Player_Behavior : MonoBehaviour
     private float movementSpeed = 10f;
     private SFXManager sfxManager;
     private GameManager gameManager;
+    public GameObject[] mobs;
 
     private bool isWalking = false;
 
@@ -36,6 +37,7 @@ public class Player_Behavior : MonoBehaviour
         sfxManager = FindAnyObjectByType<SFXManager>();
         gameManager = FindAnyObjectByType<GameManager>();
         destroyedGameObjects = new HashSet<GameObject>();
+        mobs = GameObject.FindGameObjectsWithTag("Mob");
     }
 
     void OnMove(InputValue value)
@@ -57,11 +59,26 @@ public class Player_Behavior : MonoBehaviour
         {
             if (hit.collider.CompareTag("Mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
             {
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
                 DestroyAndAddToDestroyedList();
                 sfxManager.PlayFemmeAvSound();
             }
-            else if (hit.collider.CompareTag("Furniture") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
+            else if (hit.collider.CompareTag("Props") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.PropsDestroyable)
             {
+                Debug.Log("Prop is hit");
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
+            }
+            else if (hit.collider.CompareTag("Furniture") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FurnitureDestroyable)
+            {
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
+            }
+            else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.WallsDestroyable)
+            {
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
+            }
+            else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
+            {
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
                 DestroyAndAddToDestroyedList();
             }
             else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.WallsDestroyable)
@@ -80,7 +97,7 @@ public class Player_Behavior : MonoBehaviour
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Swing"))
         {
             animator.Play("Attack Swing");
-            //sfxManager.PlaySwingSound();
+            sfxManager.PlaySwingSound();
             //shoot 10 rats in cone
             int numRays = 10;
             float deg = 10f;
