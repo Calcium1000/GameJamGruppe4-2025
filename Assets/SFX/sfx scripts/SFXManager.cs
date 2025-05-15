@@ -18,8 +18,6 @@ public class SFXManager : MonoBehaviour
     private bool isWalkingSoundPlaying = false;
 
     System.Random rand = new(); //RNG used for playing random sound from folders of sounds
-    int currentRandNum;
-    int previousRandNum;
 
     // Makes the game object persist between scenes
     private void Awake()
@@ -72,8 +70,12 @@ public class SFXManager : MonoBehaviour
     public int NonRepeatingRNG(int upperLimit)
     {
         if (upperLimit < 2) return 0;
+
         int currentRandNum;
-        do {
+        int previousRandNum = -1;
+
+        do 
+        {
             currentRandNum = rand.Next(upperLimit);
         }
         while (currentRandNum == previousRandNum);

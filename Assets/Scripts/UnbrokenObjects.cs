@@ -32,7 +32,7 @@ public class UnbrokenObjects : GameManager
             new Vector3(random.Next(-10, 10), random.Next(-10, 10), random.Next(-20, 20));
             instantiatedBrokenVersion.gameObject.tag = "Broken object";
         }
-        Destroy(gameObject);
         sFXManager.PlayHitSound();
+        Destroy(gameObject);
     }
 }
