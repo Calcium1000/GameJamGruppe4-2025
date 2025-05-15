@@ -18,7 +18,6 @@ public class Player_Behavior : MonoBehaviour
     private float movementSpeed = 10f;
     private SFXManager sfxManager;
     private GameManager gameManager;
-    public GameObject[] mobs;
 
     private bool isWalking = false;
 
@@ -37,7 +36,6 @@ public class Player_Behavior : MonoBehaviour
         sfxManager = FindAnyObjectByType<SFXManager>();
         gameManager = FindAnyObjectByType<GameManager>();
         destroyedGameObjects = new HashSet<GameObject>();
-        mobs = GameObject.FindGameObjectsWithTag("Mob");
     }
 
     void OnMove(InputValue value)

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class SFXManager : MonoBehaviour
 {
-    [SerializeField] AudioSource SFXSource;
-    [SerializeField] AudioSource WalkingSoundSource;
+    [SerializeField] AudioSource sFXSource;
+    [SerializeField] AudioSource walkingSoundSource;
     private static SFXManager instance;
 
     private AudioClip[] dialogueAv;
@@ -33,6 +33,8 @@ public class SFXManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //Adds AudioSource to the game object and assigns it to sFXSource. Gets all SFX from their folders
+        //sFXSource = gameObject.AddComponent<AudioSource>();
         dialogueAv = Resources.LoadAll<AudioClip>("SFX/dialogueAv");
         doorSounds = Resources.LoadAll<AudioClip>("SFX/doorSounds");
         femmeAv = Resources.LoadAll<AudioClip>("SFX/femmeAv");
@@ -40,7 +42,10 @@ public class SFXManager : MonoBehaviour
         mascAv = Resources.LoadAll<AudioClip>("SFX/mascAv");
         swingSounds = Resources.LoadAll<AudioClip>("SFX/swingSounds");
         toiletDoorSounds = Resources.LoadAll<AudioClip>("SFX/toiletDoorSounds");
-        walkingSound = Resources.Load<AudioClip>("SFX/gålyd2");
+
+        //Adds AudioSource to the game object and assigns it to walkingSound
+        //walkingSoundSource = gameObject.AddComponent<AudioSource>();
+        walkingSound = Resources.Load<AudioClip>("SFX/gålyd2"); // Gets the walking sound SFX
     }
     public void PlayWalkingSound(bool isWalking)
     {
@@ -48,9 +53,9 @@ public class SFXManager : MonoBehaviour
         {
             if (!isWalkingSoundPlaying)
             {
-                WalkingSoundSource.clip = walkingSound;
-                WalkingSoundSource.Play();
-                WalkingSoundSource.loop = true;
+                walkingSoundSource.clip = walkingSound;
+                walkingSoundSource.Play();
+                walkingSoundSource.loop = true;
                 isWalkingSoundPlaying = true;
             }
         }
@@ -58,8 +63,8 @@ public class SFXManager : MonoBehaviour
         {
             if (isWalkingSoundPlaying)
             {
-                WalkingSoundSource.Stop();
-                WalkingSoundSource.loop = false;
+                walkingSoundSource.Stop();
+                walkingSoundSource.loop = false;
                 isWalkingSoundPlaying = false;
             }
         }
@@ -83,27 +88,27 @@ public class SFXManager : MonoBehaviour
     }
     public void PlayFemmeAvSound()
     {
-        SFXSource.PlayOneShot(femmeAv[NonRepeatingRNG(femmeAv.Length)]);
+        sFXSource.PlayOneShot(femmeAv[NonRepeatingRNG(femmeAv.Length)]);
     }
     public void PlayHitSound()
     {
-        SFXSource.PlayOneShot(hitSounds[NonRepeatingRNG(hitSounds.Length)]);
+        sFXSource.PlayOneShot(hitSounds[NonRepeatingRNG(hitSounds.Length)]);
     }
     public void PlayMascAvSound()
     {
-        SFXSource.PlayOneShot(mascAv[NonRepeatingRNG(mascAv.Length)]);
+        sFXSource.PlayOneShot(mascAv[NonRepeatingRNG(mascAv.Length)]);
     }
     public void PlaySwingSound()
     {
-        SFXSource.PlayOneShot(swingSounds[NonRepeatingRNG(swingSounds.Length)]);
+        sFXSource.PlayOneShot(swingSounds[NonRepeatingRNG(swingSounds.Length)]);
     }
     public void PlayDoorSound()
     {
-        SFXSource.PlayOneShot(doorSounds[NonRepeatingRNG(doorSounds.Length)]);
+        sFXSource.PlayOneShot(doorSounds[NonRepeatingRNG(doorSounds.Length)]);
     }
     public void PlayToiletDoorSound()
     {
-        SFXSource.PlayOneShot(toiletDoorSounds[NonRepeatingRNG(toiletDoorSounds.Length)]);
+        sFXSource.PlayOneShot(toiletDoorSounds[NonRepeatingRNG(toiletDoorSounds.Length)]);
     }
     //public void PlayFemmeAvSound()
     //{
@@ -114,7 +119,7 @@ public class SFXManager : MonoBehaviour
     //        PlayFemmeAvSound();
     //        return;
     //    }
-    //    SFXSource.PlayOneShot(femmeAv[currentRandNum]);
+    //    sFXSource.PlayOneShot(femmeAv[currentRandNum]);
 
     //    previousRandNum = currentRandNum;
     //}
@@ -127,7 +132,7 @@ public class SFXManager : MonoBehaviour
     //        PlayHitSound();
     //        return;
     //    }
-    //    SFXSource.PlayOneShot(hitSounds[currentRandNum]);
+    //    sFXSource.PlayOneShot(hitSounds[currentRandNum]);
 
     //    previousRandNum = currentRandNum;
     //}
@@ -140,7 +145,7 @@ public class SFXManager : MonoBehaviour
     //        PlayMascAvSound();
     //        return;
     //    }
-    //    SFXSource.PlayOneShot(mascAv[currentRandNum]);
+    //    sFXSource.PlayOneShot(mascAv[currentRandNum]);
 
     //    previousRandNum = currentRandNum;
     //}
@@ -153,7 +158,7 @@ public class SFXManager : MonoBehaviour
     //        PlaySwingSound();
     //        return;
     //    }
-    //    SFXSource.PlayOneShot(swingSounds[currentRandNum]);
+    //    sFXSource.PlayOneShot(swingSounds[currentRandNum]);
 
     //    previousRandNum = currentRandNum;
     //}
@@ -166,7 +171,7 @@ public class SFXManager : MonoBehaviour
     //        PlayToiletDoorSound();
     //        return;
     //    }
-    //    SFXSource.PlayOneShot(toiletDoorSounds[currentRandNum]);
+    //    sFXSource.PlayOneShot(toiletDoorSounds[currentRandNum]);
 
     //    previousRandNum = currentRandNum;
     //}
