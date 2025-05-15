@@ -16,7 +16,7 @@ public class Player_Behavior : MonoBehaviour
     private InputSystem_Actions inputSystem;
     private Vector2 movementDirection;
     private float movementSpeed = 10f;
-    private SFXManager sfxManager;
+    private SFXManager sFXManager;
     private GameManager gameManager;
 
     private bool isWalking = false;
@@ -33,33 +33,32 @@ public class Player_Behavior : MonoBehaviour
         inputSystem.Enable();
         playerRigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        sfxManager = FindAnyObjectByType<SFXManager>();
+        sFXManager = FindAnyObjectByType<SFXManager>();
         gameManager = FindAnyObjectByType<GameManager>();
         destroyedGameObjects = new HashSet<GameObject>();
     }
+
 
     void OnMove(InputValue value)
     {
         movementDirection = value.Get<Vector2>();
     }
-
+    //void DestroyAndAddToDestroyedList()
+    //{
+    //    destroyedGameObjects.Add(hit.collider.gameObject);
+    //    Destroy(hit.collider.gameObject);
+    //    sFXManager.PlayHitSound();
+    //}
     void CheckRayCollision(Ray ray)
     {
         RaycastHit hit;
         float maximumDistanceOfRay = 5;
-        void DestroyAndAddToDestroyedList()
-        {
-            destroyedGameObjects.Add(hit.collider.gameObject);
-            Destroy(hit.collider.gameObject);
-            sfxManager.PlayHitSound();
-        }
         if (Physics.Raycast(ray, out hit, maximumDistanceOfRay))
         {
             if (hit.collider.CompareTag("Mob") && !destroyedGameObjects.Contains(hit.collider.gameObject))
             {
                 hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
-                DestroyAndAddToDestroyedList();
-                sfxManager.PlayFemmeAvSound();
+                sFXManager.PlayFemmeAvSound();
             }
             else if (hit.collider.CompareTag("Props") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.PropsDestroyable)
             {
@@ -77,15 +76,14 @@ public class Player_Behavior : MonoBehaviour
             else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
             {
                 hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
-                DestroyAndAddToDestroyedList();
             }
             else if (hit.collider.CompareTag("Walls") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.WallsDestroyable)
             {
-                DestroyAndAddToDestroyedList();
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
             else if (hit.collider.CompareTag("Floor") && !destroyedGameObjects.Contains(hit.collider.gameObject) && gameManager.FloorDestroyable)
             {
-                DestroyAndAddToDestroyedList();
+                hit.collider.GetComponent<UnbrokenObjects>().IsAttacked();
             }
         }
     }
@@ -95,7 +93,7 @@ public class Player_Behavior : MonoBehaviour
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Swing"))
         {
             animator.Play("Attack Swing");
-            sfxManager.PlaySwingSound();
+            sFXManager.PlaySwingSound();
             //shoot 10 rats in cone
             int numRays = 10;
             float deg = 10f;
@@ -121,7 +119,7 @@ public class Player_Behavior : MonoBehaviour
         {
             isWalking = false;
         }
-        sfxManager.PlayWalkingSound(isWalking);
+        sFXManager.PlayWalkingSound(isWalking);
 
         Vector3 movement = new Vector3(-movementDirection.y, 0, movementDirection.x) * (movementSpeed);
         playerRigidBody.linearVelocity = movement;

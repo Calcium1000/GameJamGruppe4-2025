@@ -6,6 +6,7 @@ public class SFXManager : MonoBehaviour
     [SerializeField] AudioSource walkingSoundSource;
     private static SFXManager instance;
 
+    //Fields containing SFX
     private AudioClip[] dialogueAv;
     private AudioClip[] doorSounds;
     private AudioClip[] femmeAv;
@@ -34,7 +35,7 @@ public class SFXManager : MonoBehaviour
             Destroy(gameObject);
         }
         //Adds AudioSource to the game object and assigns it to sFXSource. Gets all SFX from their folders
-        //sFXSource = gameObject.AddComponent<AudioSource>();
+        sFXSource = gameObject.AddComponent<AudioSource>();
         dialogueAv = Resources.LoadAll<AudioClip>("SFX/dialogueAv");
         doorSounds = Resources.LoadAll<AudioClip>("SFX/doorSounds");
         femmeAv = Resources.LoadAll<AudioClip>("SFX/femmeAv");
@@ -44,9 +45,13 @@ public class SFXManager : MonoBehaviour
         toiletDoorSounds = Resources.LoadAll<AudioClip>("SFX/toiletDoorSounds");
 
         //Adds AudioSource to the game object and assigns it to walkingSound
-        //walkingSoundSource = gameObject.AddComponent<AudioSource>();
+        walkingSoundSource = gameObject.AddComponent<AudioSource>();
         walkingSound = Resources.Load<AudioClip>("SFX/gålyd2"); // Gets the walking sound SFX
     }
+    /// <summary>
+    /// Called in Player_Behavior in Update().
+    /// </summary>
+    /// <param name="isWalking"></param>
     public void PlayWalkingSound(bool isWalking)
     {
         if (isWalking)
@@ -70,7 +75,7 @@ public class SFXManager : MonoBehaviour
         }
     }
     /// <summary>
-    /// Uses upperLimit to return a number a non-negative number lower than upperLimit. Will never return the same number twice in a row
+    /// Uses upperLimit to return a non-negative int lower than upperLimit. Will never return the same number twice in a row
     /// </summary>
     /// <param name="upperLimit"></param>
     /// <returns></returns>
@@ -86,6 +91,7 @@ public class SFXManager : MonoBehaviour
         previousRandNum = currentRandNum;
         return currentRandNum;
     }
+    //Plays a random sound from the corresponding arrays of sfx
     public void PlayFemmeAvSound()
     {
         sFXSource.PlayOneShot(femmeAv[NonRepeatingRNG(femmeAv.Length)]);
