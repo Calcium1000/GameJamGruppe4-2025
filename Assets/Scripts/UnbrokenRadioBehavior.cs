@@ -9,6 +9,7 @@ public class UnbrokenRadioBehavior : UnbrokenObjects
     private AudioClip technoTrack;
     private AudioClip classical;
     private bool radioDestroyable = false;
+    private bool classicalPlaying = false;
     void Awake()
     {
         Debug.Log("UnbrokenRadioBehavior instantiated");
@@ -24,6 +25,7 @@ public class UnbrokenRadioBehavior : UnbrokenObjects
         musicPlayer.Stop();
         musicPlayer.clip = classical;
         musicPlayer.PlayDelayed(0.3f);
+
     }
     IEnumerator MakeRadioDestroyable()
     {
@@ -35,10 +37,17 @@ public class UnbrokenRadioBehavior : UnbrokenObjects
     public override void IsAttacked()
     {
         Debug.Log("Radio is hit");
-        ChangeToClassical();
-        StartCoroutine(MakeRadioDestroyable());
-        if (!radioDestroyable) return;
-
+        if (!classicalPlaying)
+        {
+            classicalPlaying = true;
+            ChangeToClassical();
+            StartCoroutine(MakeRadioDestroyable());
+        }
+        if (!radioDestroyable)
+        {
+            sFXManager.PlayHitSound();
+            return;
+        }
         base.IsAttacked();
     }
 }
